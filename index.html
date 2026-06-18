@@ -35,7 +35,9 @@
       radial-gradient(circle at 82% 90%, rgba(63,111,90,.06), transparent 42%);
     min-height:100vh;
   }
-  .wrap{max-width:760px;margin:0 auto;padding:18px 16px 60px}
+  .wrap{max-width:760px;margin:0 auto;padding:18px 16px 60px;position:relative;z-index:1}
+  .bg-deco{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .bg-deco svg{width:100%;height:100%}
 
   /* HEADER */
   header{
@@ -279,6 +281,41 @@
 </style>
 </head>
 <body>
+<div class="bg-deco" aria-hidden="true">
+  <svg viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- nuvem chinesa estilizada (ruyi) -->
+    <g opacity="0.10" fill="none" stroke="#3f6f5a" stroke-width="2">
+      <path d="M30 90 c0 -10 14 -10 14 0 c0 -8 12 -8 12 2 c6 -2 10 4 6 9 c3 5 -2 11 -8 9 c-2 6 -12 5 -13 -1 c-8 3 -14 -5 -11 -11 c-4 -2 -3 -8 0 -7Z"/>
+    </g>
+    <g opacity="0.09" fill="none" stroke="#3f6f5a" stroke-width="2">
+      <path d="M320 660 c0 -10 14 -10 14 0 c0 -8 12 -8 12 2 c6 -2 10 4 6 9 c3 5 -2 11 -8 9 c-2 6 -12 5 -13 -1 c-8 3 -14 -5 -11 -11 c-4 -2 -3 -8 0 -7Z"/>
+    </g>
+    <!-- corações roxos soltos -->
+    <path d="M340 120 c0 -7 10 -7 10 0 c0 -7 10 -7 10 0 c0 7 -10 13 -10 13 c0 0 -10 -6 -10 -13Z" fill="#7c5cbf" opacity="0.10"/>
+    <path d="M50 520 c0 -6 8 -6 8 0 c0 -6 8 -6 8 0 c0 6 -8 11 -8 11 c0 0 -8 -5 -8 -11Z" fill="#7c5cbf" opacity="0.10"/>
+    <path d="M360 400 c0 -5 7 -5 7 0 c0 -5 7 -5 7 0 c0 5 -7 9 -7 9 c0 0 -7 -4 -7 -9Z" fill="#a98fd9" opacity="0.12"/>
+    <!-- pétalas -->
+    <ellipse cx="120" cy="200" rx="9" ry="4" fill="#c2456b" opacity="0.08" transform="rotate(35 120 200)"/>
+    <ellipse cx="280" cy="300" rx="8" ry="3.5" fill="#c2456b" opacity="0.07" transform="rotate(-25 280 300)"/>
+    <ellipse cx="70" cy="380" rx="9" ry="4" fill="#c2456b" opacity="0.07" transform="rotate(60 70 380)"/>
+    <ellipse cx="330" cy="540" rx="8" ry="3.5" fill="#c2456b" opacity="0.08" transform="rotate(15 330 540)"/>
+    <!-- estrelinhas / brilhos -->
+    <g fill="#b8860b" opacity="0.13">
+      <path d="M200 60 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2Z"/>
+      <path d="M90 280 l1.6 4 4 1.6 -4 1.6 -1.6 4 -1.6 -4 -4 -1.6 4 -1.6Z"/>
+      <path d="M310 230 l1.6 4 4 1.6 -4 1.6 -1.6 4 -1.6 -4 -4 -1.6 4 -1.6Z"/>
+      <path d="M160 620 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2Z"/>
+    </g>
+    <!-- notas musicais (aceno ao fandom) -->
+    <g fill="#7c5cbf" opacity="0.10">
+      <path d="M250 480 a4 4 0 1 0 0.1 0 Z M254 480 V462 M254 462 c4 1 7 3 7 6 c-2 -1 -4 -2 -7 -2Z"/>
+      <path d="M40 140 a3.4 3.4 0 1 0 0.1 0 Z M43.4 140 V125 M43.4 125 c3.4 0.8 6 2.6 6 5 c-1.7 -0.8 -3.4 -1.7 -6 -1.7Z"/>
+    </g>
+    <!-- caractere decorativo 樂 (música/alegria) bem suave -->
+    <text x="300" y="730" font-size="46" fill="#3f6f5a" opacity="0.06" font-family="serif">樂</text>
+    <text x="60" y="680" font-size="40" fill="#7c5cbf" opacity="0.06" font-family="serif">心</text>
+  </svg>
+</div>
 <div class="wrap">
 
   <header>
@@ -290,7 +327,7 @@
     </svg>
     <div class="h-badge">修道 · 💜</div>
     <div class="h-title"><span class="h-han">修道</span> · Simulado SEPLAG-RJ</div>
-    <div class="h-sub">FGV 2026 · EPPGG &amp; APO · 314 questões · cultivo &amp; hype 💜</div>
+    <div class="h-sub">FGV 2026 · EPPGG &amp; APO · 480 questões (203 estilo FGV) · cultivo &amp; hype 💜</div>
   </header>
 
   <!-- ===== TELA DE LOGIN ===== -->
@@ -518,7 +555,11 @@ const ELOGIOS=[
   "Isso! Tá no ritmo — fé na fase mais bonita da jornada.",
   "Perfeito. A constância vence: persona de quem vai passar.",
   "Acertou! Mic drop nessa questão. 🎤 Segue assim.",
-  "Boa! Sua melhor era é agora — e ela só está começando."
+  "Boa! Sua melhor era é agora — e ela só está começando.",
+  "Isso! Asas pra voar nesse edital. Você nasceu pra isso. 🦋",
+  "Correto! Dyna-mite puro nessa resposta. 💥",
+  "Boa! O mapa da alma desse conteúdo tá na sua mão.",
+  "Acertou! Fé na garota/garoto de ouro que você é. 🏆"
 ];
 const CONSOLOS=[
   "Errou, mas tá tudo bem. Respira e segue — borahae 💜",
@@ -527,7 +568,10 @@ const CONSOLOS=[
   "Errar é parte da fase mais bonita e caótica da jornada. Segue!",
   "Tá quase! Atravessa essa noite que o amanhecer vem. 🌅",
   "Não se entrega agora — responde a chamada e levanta de novo.",
-  "Um tropeço hoje é gabarito amanhã. Ame-se primeiro, erre sem medo."
+  "Um tropeço hoje é gabarito amanhã. Ame-se primeiro, erre sem medo.",
+  "Tudo bem não estar bem nessa questão. Respira e volta. 💜",
+  "Mesmo perdido, você vai achar o caminho de volta. Bora!",
+  "A sombra de hoje é só prova de que existe luz. Continua. 🌙"
 ];
 /* frases-piscadela que aparecem ao abrir (alusão a eras/álbuns, sem versos) */
 const FRASES_ABERTURA=[
@@ -537,7 +581,11 @@ const FRASES_ABERTURA=[
   "Bora atravessar a noite de estudo — o amanhecer (e a posse) vem.",
   "Foco de cultivador, coração de ARMY. Você consegue. 💜",
   "Cada questão de hoje é um verso da sua própria história de aprovação.",
-  "Sem pressa e sem pausa: o mapa para a alma do edital é a constância."
+  "Sem pressa e sem pausa: o mapa para a alma do edital é a constância.",
+  "Hoje tem energia de dyna-mite: brilha nesse simulado. 💥",
+  "Espalha as asas — esse edital não vai saber o que veio. 🦋",
+  "Você é à prova de balas à sua maneira: segue firme no estudo.",
+  "A resposta pra 'passar ou não passar' começa com a página de hoje."
 ];
 
 /* mascote Yùtù (coelho de jade) — SVG original, 3 humores: 'neutro','feliz','anima' */
