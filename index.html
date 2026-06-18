@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulado SEPLAG-RJ · FGV 2026</title>
+<style>
+  :root{
+    --ink:#1a1410;        /* tinta quase preta  */
+    --paper:#f4ecdb;      /* pergaminho         */
+    --paper2:#ece0c8;     /* pergaminho fundo   */
+    --jade:#3f6f5a;       /* verde Gusu Lan     */
+    --jade2:#578a72;
+    --gold:#b8860b;       /* dourado            */
+    --gold2:#d4a017;
+    --crimson:#9c3b30;    /* vermelho Wei Wuxian*/
+    --line:#cdb98f;
+    --ok:#3B6D11;
+    --okbg:#e7f0d6;
+    --no:#a32d2d;
+    --nobg:#f7e0de;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+    background-image:
+      radial-gradient(circle at 18% 12%, rgba(184,134,11,.05), transparent 40%),
+      radial-gradient(circle at 82% 88%, rgba(63,111,90,.06), transparent 42%);
+    min-height:100vh;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:18px 16px 60px}
+
+  /* HEADER */
+  header{
+    border:1px solid var(--line);
+    background:linear-gradient(180deg,#fbf5e7,#efe4ce);
+    border-radius:14px;
+    padding:18px 20px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 2px 0 rgba(184,134,11,.12);
+  }
+  header .deco{position:absolute;inset:0;pointer-events:none;opacity:.5}
+  .h-title{font-size:21px;font-weight:700;letter-spacing:.5px;color:var(--ink)}
+  .h-han{color:var(--jade);font-weight:700}
+  .h-sub{font-size:12.5px;color:#7a6a4d;margin-top:3px;letter-spacing:.3px}
+  .h-badge{
+    position:absolute;top:14px;right:18px;
+    font-family:serif;font-size:22px;color:var(--gold);opacity:.55;
+  }
+
+  /* NAV */
+  nav{display:flex;gap:6px;margin:16px 0}
+  .nb{
+    flex:1;border:1px solid var(--line);background:#f8f1e1;
+    color:#6f5f44;font-size:13.5px;font-weight:600;
+    padding:9px 6px;border-radius:9px;cursor:pointer;
+    transition:.15s;
+  }
+  .nb:hover{background:#f2e8d2}
+  .nb.on{background:var(--jade);color:#f4ecdb;border-color:var(--jade)}
+
+  /* CARDS DE CONFIG */
+  .card{
+    border:1px solid var(--line);background:#fbf6ea;
+    border-radius:11px;padding:13px 14px;margin-bottom:11px;
+  }
+  .card.cr{border-left:3px solid var(--crimson)}
+  .card.cg{border-left:3px solid var(--gold)}
+  .card.cj{border-left:3px solid var(--jade)}
+  .clabel{font-size:12px;font-weight:700;letter-spacing:.4px;color:#6f5f44;margin-bottom:9px;text-transform:uppercase}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{
+    border:1px solid var(--line);background:#fff;
+    padding:6px 11px;border-radius:20px;font-size:12.5px;cursor:pointer;
+    transition:.12s;color:#5a4d39;user-select:none;
+  }
+  .chip:hover{border-color:var(--gold)}
+  .chip.sel{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .chip .fire{color:var(--crimson);font-size:11px}
+  .chip.sel .fire{color:#ffb38a}
+
+  /* BOTÃO PRINCIPAL */
+  .bmain{
+    width:100%;border:none;cursor:pointer;
+    background:linear-gradient(180deg,var(--crimson),#7e2e25);
+    color:#f8ecd8;font-size:15px;font-weight:700;letter-spacing:.5px;
+    padding:13px;border-radius:11px;margin-top:4px;
+    box-shadow:0 2px 0 #5e221b;transition:.12s;
+  }
+  .bmain:hover{filter:brightness(1.07)}
+  .bmain:active{transform:translateY(1px);box-shadow:0 1px 0 #5e221b}
+
+  /* QUIZ */
+  .qbar{height:7px;background:var(--paper2);border-radius:5px;overflow:hidden;margin-bottom:4px}
+  .qbar>i{display:block;height:100%;background:linear-gradient(90deg,var(--jade),var(--jade2));transition:.4s}
+  .qmeta{display:flex;justify-content:space-between;font-size:12px;color:#7a6a4d;margin-bottom:12px}
+  .qmeta b{color:var(--ink)}
+  .qcard{border:1px solid var(--line);background:#fbf6ea;border-radius:12px;padding:17px 16px}
+  .qtag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+        color:var(--jade);border:1px solid var(--jade);border-radius:20px;padding:2px 9px;margin-bottom:11px}
+  .qtag.hot{color:var(--crimson);border-color:var(--crimson)}
+  .qtext{font-size:15px;line-height:1.6;margin-bottom:15px;color:var(--ink)}
+  .alt{
+    display:flex;gap:10px;align-items:flex-start;
+    border:1px solid var(--line);background:#fff;
+    border-radius:9px;padding:11px 12px;margin-bottom:8px;cursor:pointer;
+    font-size:13.5px;transition:.12s;
+  }
+  .alt:hover{border-color:var(--gold);background:#fffdf6}
+  .alt .lt{font-weight:700;color:var(--jade);flex-shrink:0}
+  .alt.sel{border-color:var(--ink);background:#f4ecdb}
+  .alt.ok{border-color:var(--ok);background:var(--okbg)}
+  .alt.ok .lt{color:var(--ok)}
+  .alt.no{border-color:var(--no);background:var(--nobg)}
+  .alt.no .lt{color:var(--no)}
+  .alt.lock{cursor:default}
+  .com{
+    margin-top:12px;border-left:3px solid var(--gold);
+    background:#fbf3df;border-radius:0 9px 9px 0;padding:12px 13px;
+    font-size:13px;line-height:1.6;color:#4a4031;
+  }
+  .com b{color:var(--crimson)}
+  .qfoot{display:flex;gap:9px;margin-top:14px}
+  .btn{
+    border:1px solid var(--line);background:#f8f1e1;color:#5a4d39;
+    font-size:13.5px;font-weight:600;padding:10px 16px;border-radius:9px;cursor:pointer;flex:1;transition:.12s;
+  }
+  .btn:hover{background:#f2e8d2}
+  .btn.pri{background:var(--jade);color:#f4ecdb;border-color:var(--jade)}
+  .btn.pri:hover{filter:brightness(1.07)}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+
+  /* RESULTADO */
+  .result{text-align:center;border:1px solid var(--line);background:#fbf6ea;border-radius:14px;padding:28px 20px}
+  .rscore{font-size:50px;font-weight:800;line-height:1}
+  .rlabel{font-size:13px;color:#7a6a4d;margin-top:6px;letter-spacing:.5px}
+  .rmsg{margin:16px auto 4px;font-size:14px;max-width:420px;color:#4a4031}
+  .rhan{font-family:serif;color:var(--jade);font-size:20px;margin-top:14px}
+
+  /* HISTÓRICO */
+  .stats{display:flex;gap:9px;margin-bottom:14px}
+  .stat{flex:1;border:1px solid var(--line);background:#fbf6ea;border-radius:11px;padding:13px 8px;text-align:center}
+  .stat .v{font-size:25px;font-weight:800}
+  .stat .l{font-size:11px;color:#7a6a4d;margin-top:2px}
+  .hrow{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+  .hmat{font-size:12.5px;color:#5a4d39;width:150px;flex-shrink:0}
+  .hbarw{flex:1;height:8px;background:var(--paper2);border-radius:5px;overflow:hidden}
+  .hbar{height:100%;border-radius:5px;transition:.5s}
+  .hpct{font-size:12.5px;font-weight:700;width:42px;text-align:right}
+  .hfrac{font-size:11px;color:#9a8a6d;width:46px;text-align:right}
+
+  /* REVISÃO */
+  .revq{border:1px solid var(--line);background:#fbf6ea;border-radius:11px;padding:14px;margin-bottom:10px}
+  .revq .t{font-size:13.5px;line-height:1.55;margin-bottom:9px}
+  .revq .badges{display:flex;gap:7px;flex-wrap:wrap;font-size:11.5px}
+  .bdg{padding:3px 9px;border-radius:11px;font-weight:600}
+  .bdg.no{background:var(--nobg);color:var(--no)}
+  .bdg.ok{background:var(--okbg);color:var(--ok)}
+  .bdg.mat{background:#efe4ce;color:#6f5f44}
+
+  .empty{text-align:center;color:#9a8a6d;font-size:13.5px;padding:34px 16px;border:1px dashed var(--line);border-radius:12px}
+  .small{font-size:11.5px;color:#9a8a6d;text-align:center;margin-top:18px;line-height:1.6}
+  .small a{color:var(--jade)}
+  @media (max-width:520px){
+    .h-title{font-size:18px}
+    .hmat{width:104px}
+    .rscore{font-size:42px}
+  }
+
+  /* ===== MODO SIMULADO (novos estilos) ===== */
+  .modepick{display:flex;flex-direction:column;gap:11px;margin-bottom:8px}
+  .modecard{
+    border:1px solid var(--line);background:#fbf6ea;border-radius:12px;
+    padding:16px 16px;cursor:pointer;transition:.14s;text-align:left;position:relative;
+  }
+  .modecard:hover{border-color:var(--gold);background:#fffdf6}
+  .modecard.on{border-color:var(--jade);background:#f1f6f0;box-shadow:0 0 0 1px var(--jade) inset}
+  .modecard .mt{font-size:15px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px}
+  .modecard .md{font-size:12.5px;color:#7a6a4d;margin-top:5px;line-height:1.5}
+  .modecard .mhan{position:absolute;top:14px;right:15px;font-family:serif;color:var(--jade);opacity:.5;font-size:15px}
+
+  /* timer fixo no topo do quiz */
+  .timer{
+    display:flex;align-items:center;justify-content:space-between;
+    border:1px solid var(--line);background:linear-gradient(180deg,#fbf5e7,#efe4ce);
+    border-radius:10px;padding:9px 13px;margin-bottom:11px;position:sticky;top:6px;z-index:5;
+  }
+  .timer .clock{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.5px}
+  .timer .clock.warn{color:var(--crimson);animation:pulse 1s infinite}
+  .timer .tlabel{font-size:11px;color:#7a6a4d;text-transform:uppercase;letter-spacing:.4px}
+  .timer .tprog{font-size:12px;color:#5a4d39;font-weight:600}
+  @keyframes pulse{50%{opacity:.45}}
+
+  /* navegação do simulado (sem gabarito imediato) */
+  .navgrid{display:flex;flex-wrap:wrap;gap:6px;margin:13px 0}
+  .navg{
+    width:34px;height:34px;border:1px solid var(--line);background:#fff;border-radius:7px;
+    font-size:12.5px;font-weight:600;cursor:pointer;color:#5a4d39;transition:.1s;
+  }
+  .navg:hover{border-color:var(--gold)}
+  .navg.done{background:var(--jade);color:#f4ecdb;border-color:var(--jade)}
+  .navg.curr{box-shadow:0 0 0 2px var(--crimson);border-color:var(--crimson)}
+  .navg.flag{background:var(--gold);color:#3a2e0a;border-color:var(--gold)}
+
+  .simbtns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  .simbtns .btn{flex:1;min-width:120px}
+  .flagbtn{flex:0 0 auto !important;min-width:auto !important}
+
+  /* tela de revisão final */
+  .revrow{
+    display:flex;align-items:center;gap:10px;border:1px solid var(--line);
+    background:#fbf6ea;border-radius:9px;padding:10px 12px;margin-bottom:7px;cursor:pointer;transition:.1s;
+  }
+  .revrow:hover{background:#f4ecdb}
+  .revrow .rn{font-weight:700;width:30px;color:#6f5f44}
+  .revrow .rs{margin-left:auto;font-size:12px;font-weight:700;padding:2px 9px;border-radius:11px}
+  .rs.ok{background:var(--okbg);color:var(--ok)}
+  .rs.no{background:var(--nobg);color:var(--no)}
+  .rs.blank{background:#ece4d2;color:#8a7a5d}
+  .confirmbox{
+    border:1px solid var(--crimson);background:#fbeee9;border-radius:11px;
+    padding:14px;margin-top:10px;font-size:13px;color:#7a3a30
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <svg class="deco" viewBox="0 0 760 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 60 Q120 44 240 60 Q360 76 480 60 Q600 44 720 60 L760 60" stroke="#b8860b" stroke-width="0.7" fill="none" opacity="0.4"/>
+      <circle cx="380" cy="58" r="16" stroke="#3f6f5a" stroke-width="0.5" fill="none" opacity="0.4"/>
+    </svg>
+    <div class="h-badge">陈情令</div>
+    <div class="h-title"><span class="h-han">修道</span> · Simulado SEPLAG-RJ</div>
+    <div class="h-sub">FGV 2026 · EPPGG &amp; APO · 277 questões · sem login</div>
+  </header>
+
+  <nav>
+    <button class="nb on" id="nb-sim" onclick="tab('sim')">⚔ Praticar</button>
+    <button class="nb" id="nb-rev" onclick="tab('rev')">☯ Revisão</button>
+    <button class="nb" id="nb-his" onclick="tab('his')">卷 Desempenho</button>
+  </nav>
+
+  <!-- ===== PRATICAR (escolha de modo + config) ===== -->
+  <section id="t-sim">
+
+    <!-- escolha do modo -->
+    <div id="modepick">
+      <div class="modepick">
+        <div class="modecard on" id="mode-estudo" onclick="setModo('estudo')">
+          <span class="mhan">學</span>
+          <div class="mt">📖 Modo Estudo</div>
+          <div class="md">Sem tempo. Você confirma cada resposta e vê o gabarito comentado na hora. Ideal para aprender e fixar.</div>
+        </div>
+        <div class="modecard" id="mode-prova" onclick="setModo('prova')">
+          <span class="mhan">試</span>
+          <div class="mt">⏱ Simulado de Prova</div>
+          <div class="md">Cronometrado, no formato FGV. Sem gabarito durante a prova — você responde tudo, pode marcar questões para revisar e só vê o resultado no fim.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- config -->
+    <div id="config">
+      <div class="card cj">
+        <div class="clabel">✦ Matéria</div>
+        <div id="c-mat" class="chips"></div>
+      </div>
+      <div class="card cr">
+        <div class="clabel">✦ Dificuldade</div>
+        <div id="c-dif" class="chips"></div>
+      </div>
+      <div class="card cg">
+        <div class="clabel">✦ Focar no que mais cai?</div>
+        <div id="c-hot" class="chips"></div>
+      </div>
+
+      <!-- bloco específico do simulado de prova -->
+      <div id="provaopts" style="display:none">
+        <div class="card cr">
+          <div class="clabel">✦ Formato da prova</div>
+          <div id="c-preset" class="chips"></div>
+        </div>
+        <div class="card cg">
+          <div class="clabel">✦ Questões e tempo</div>
+          <div id="c-qtemp" class="chips"></div>
+          <div class="small" id="tempoinfo" style="text-align:left;margin-top:9px"></div>
+        </div>
+      </div>
+
+      <!-- quantidade (só modo estudo) -->
+      <div class="card" id="qtdcard">
+        <div class="clabel">✦ Quantidade de questões</div>
+        <div id="c-qtd" class="chips"></div>
+      </div>
+
+      <button class="bmain" id="startbtn" onclick="iniciar()">⚡ Iniciar · 以武入道</button>
+      <div class="small" id="startnote">As questões são um banco fixo, revisado manualmente. Seu desempenho fica salvo só neste navegador.</div>
+    </div>
+
+    <!-- quiz (ambos os modos) -->
+    <div id="quiz" style="display:none"></div>
+  </section>
+
+  <section id="t-rev" style="display:none"></section>
+  <section id="t-his" style="display:none"></section>
+
+  <div class="small">陈情令 · The Untamed · 修道 — estude com disciplina de cultivador.</div>
+</div>
+
+<script src="questoes.js"></script>
+<script>
+/* ───────── MATÉRIAS ───────── */
+const MATERIAS = [
+  {id:"port",l:"Língua Portuguesa",hot:true},
+  {id:"racioc",l:"Raciocínio Lógico",hot:true},
+  {id:"dadmin",l:"Direito Administrativo",hot:true},
+  {id:"dconst",l:"Direito Constitucional",hot:true},
+  {id:"admgov",l:"Administração e Gov. Pública",hot:true},
+  {id:"finpub",l:"Finanças Públicas / AFO",hot:true},
+  {id:"polpub",l:"Políticas Públicas",hot:true},
+  {id:"econ",l:"Economia",hot:false},
+  {id:"ciepol",l:"Ciência Política",hot:false},
+  {id:"realrj",l:"Realidade Brasileira e do RJ",hot:true},
+  {id:"gestpess",l:"Gestão de Pessoas",hot:false},
+  {id:"tic",l:"Tecnologia da Informação",hot:false},
+  {id:"etica",l:"Ética e Legislação",hot:false},
+  {id:"legserv",l:"Estatuto dos Servidores RJ",hot:true},
+];
+const MATMAP = Object.fromEntries(MATERIAS.map(m=>[m.id,m.l]));
+const DIFS = ["Todas","Fácil","Médio","Difícil"];
+const HOTS = ["Sim, foco no que mais cai","Não, qualquer questão"];
+const QTDS = [5,10,15,20];
+
+/* presets de prova (baseados no formato FGV Seplag-RJ) */
+const PRESETS = [
+  {id:"gerais", l:"Conhecimentos Gerais (FGV)", q:40, min:270, desc:"40 questões · 4h30 — espelha a prova de Conhecimentos Gerais."},
+  {id:"espec",  l:"Conhecimentos Específicos (FGV)", q:60, min:240, desc:"60 questões · 4h00 — espelha a prova de Conhecimentos Específicos."},
+  {id:"rapido", l:"Treino rápido", q:20, min:60, desc:"20 questões · 1h — sessão curta cronometrada."},
+  {id:"custom", l:"Personalizado", q:null, min:null, desc:"Você escolhe a quantidade e o tempo."},
+];
+const CUSTOM_QT = [
+  {q:10,min:20},{q:20,min:40},{q:30,min:75},{q:40,min:120},{q:60,min:180}
+];
+
+/* ───────── ESTADO ───────── */
+let modo = "estudo"; // "estudo" | "prova"
+let cfg = {mat:"todas",dif:"Todas",hot:false,qtd:5,preset:"gerais",qt:{q:20,min:40}};
+let quiz=[], pos=0, acertos=0, sel=null, respondida=false;
+let respostas=[];     // simulado: índice escolhido por questão (null = em branco)
+let flags=[];         // simulado: questões marcadas p/ revisão
+let timerId=null, segRestantes=0;
+
+const LS = {
+  get(k,def){try{return JSON.parse(localStorage.getItem("seplag_"+k))??def;}catch(e){return def;}},
+  set(k,v){try{localStorage.setItem("seplag_"+k,JSON.stringify(v));}catch(e){}}
+};
+let historico = LS.get("hist",{});
+let revisar   = LS.get("rev",[]);
+
+const ELOGIOS=["Mn. Correto.","Hanguang-Jun aprova.","Teu esforço não passa despercebido.","Bem feito. Continue assim.","A diligência é virtude.","O caminho do cultivo exige persistência — e você o trilha bem."];
+const CONSOLOS=["Errar faz parte do cultivo. Levante-se.","Wei Ying também caía — e seguia em frente.","Anote no modo Revisão e volte mais forte.","Um tropeço hoje é uma lição amanhã.","Não desanime; a próxima é sua."];
+
+/* ───────── MODO ───────── */
+function setModo(m){
+  modo=m;
+  document.getElementById("mode-estudo").classList.toggle("on",m==="estudo");
+  document.getElementById("mode-prova").classList.toggle("on",m==="prova");
+  document.getElementById("provaopts").style.display = m==="prova"?"block":"none";
+  document.getElementById("qtdcard").style.display   = m==="prova"?"none":"block";
+  document.getElementById("startbtn").innerHTML = m==="prova"?"⏱ Iniciar simulado · 試煉":"⚡ Iniciar estudo · 以武入道";
+  document.getElementById("startnote").textContent = m==="prova"
+    ? "Cronometrado, sem gabarito durante a prova. O relógio corre até o fim — gerencie seu tempo."
+    : "Sem tempo. Gabarito comentado a cada questão, para aprender com calma.";
+  renderConfig();
+}
+
+/* ───────── CHIPS ───────── */
+function chip(text,selected,onclick,fire){
+  const d=document.createElement("div");
+  d.className="chip"+(selected?" sel":"");
+  d.innerHTML=text+(fire?' <span class="fire">🔥</span>':'');
+  d.onclick=onclick;
+  return d;
+}
+function renderConfig(){
+  const cm=document.getElementById("c-mat");cm.innerHTML="";
+  cm.appendChild(chip("Todas as matérias",cfg.mat==="todas",()=>{cfg.mat="todas";renderConfig();}));
+  MATERIAS.forEach(m=>{
+    if(!BANCO.some(q=>q.mat===m.id))return;
+    cm.appendChild(chip(m.l,cfg.mat===m.id,()=>{cfg.mat=m.id;renderConfig();},m.hot));
+  });
+  const cd=document.getElementById("c-dif");cd.innerHTML="";
+  DIFS.forEach(d=>cd.appendChild(chip(d,cfg.dif===d,()=>{cfg.dif=d;renderConfig();})));
+  const ch=document.getElementById("c-hot");ch.innerHTML="";
+  HOTS.forEach((h,i)=>ch.appendChild(chip(h,cfg.hot===(i===0),()=>{cfg.hot=(i===0);renderConfig();})));
+  const cq=document.getElementById("c-qtd");cq.innerHTML="";
+  QTDS.forEach(n=>cq.appendChild(chip(String(n),cfg.qtd===n,()=>{cfg.qtd=n;renderConfig();})));
+
+  if(modo==="prova"){
+    const cp=document.getElementById("c-preset");cp.innerHTML="";
+    PRESETS.forEach(p=>cp.appendChild(chip(p.l,cfg.preset===p.id,()=>{cfg.preset=p.id;renderConfig();})));
+    const cqt=document.getElementById("c-qtemp");cqt.innerHTML="";
+    const info=document.getElementById("tempoinfo");
+    if(cfg.preset==="custom"){
+      cqt.parentElement.style.display="block";
+      CUSTOM_QT.forEach(o=>cqt.appendChild(chip(o.q+" q · "+o.min+"min",cfg.qt.q===o.q,()=>{cfg.qt={q:o.q,min:o.min};renderConfig();})));
+      info.textContent="Escolha a combinação de questões e tempo do seu treino.";
+    }else{
+      const p=PRESETS.find(x=>x.id===cfg.preset);
+      cqt.parentElement.style.display="none";
+      const avail=BANCO.filter(q=>filtra(q)).length;
+      info.innerHTML=p.desc + (avail<p.q?`<br><b style="color:var(--crimson)">⚠ Só há ${avail} questões nos filtros atuais; o simulado usará ${avail}.</b>`:"");
+    }
+  }
+}
+
+/* ───────── FILTRO / INÍCIO ───────── */
+function filtra(q){
+  if(cfg.mat!=="todas"&&q.mat!==cfg.mat)return false;
+  if(cfg.dif!=="Todas"&&q.dif!==cfg.dif)return false;
+  if(cfg.hot&&!q.hot)return false;
+  return true;
+}
+function embaralhar(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function iniciar(){
+  let pool=BANCO.filter(filtra);
+  if(pool.length===0){alert("Não há questões para esses filtros. Tente afrouxar a dificuldade ou escolher 'Todas as matérias'.");return;}
+
+  let qtd, minutos=0;
+  if(modo==="prova"){
+    if(cfg.preset==="custom"){qtd=cfg.qt.q;minutos=cfg.qt.min;}
+    else{const p=PRESETS.find(x=>x.id===cfg.preset);qtd=p.q;minutos=p.min;}
+    qtd=Math.min(qtd,pool.length);
+    // tempo proporcional se houver menos questões que o preset
+    if(cfg.preset!=="custom"){
+      const p=PRESETS.find(x=>x.id===cfg.preset);
+      minutos=Math.round(p.min*(qtd/p.q));
+    }
+  }else{
+    qtd=Math.min(cfg.qtd,pool.length);
+  }
+
+  quiz=embaralhar(pool).slice(0,qtd);
+  pos=0;acertos=0;
+  respostas=new Array(quiz.length).fill(null);
+  flags=new Array(quiz.length).fill(false);
+
+  document.getElementById("modepick").style.display="none";
+  document.getElementById("config").style.display="none";
+  document.getElementById("quiz").style.display="block";
+
+  if(modo==="prova"){
+    segRestantes=minutos*60;
+    iniciarTimer();
+    renderProva();
+  }else{
+    renderEstudo();
+  }
+}
+
+/* ═══════════ MODO ESTUDO ═══════════ */
+function renderEstudo(){
+  sel=null;respondida=false;
+  const q=quiz[pos];
+  const pct=Math.round((pos/quiz.length)*100);
+  const alts=q.alt.map((a,i)=>`<div class="alt" data-i="${i}" onclick="escolherE(${i})"><span class="lt">${"ABCDE"[i]}</span><span>${a}</span></div>`).join("");
+  document.getElementById("quiz").innerHTML=`
+    <div class="qbar"><i style="width:${pct}%"></i></div>
+    <div class="qmeta"><span>Questão <b>${pos+1}</b> de <b>${quiz.length}</b></span><span>Acertos: <b>${acertos}</b></span></div>
+    <div class="qcard">
+      <span class="qtag ${q.hot?'hot':''}">${MATMAP[q.mat]} · ${q.dif}${q.hot?' · 🔥 alta incidência':''}</span>
+      <div class="qtext">${q.q}</div>
+      <div id="alts">${alts}</div>
+      <div id="com"></div>
+      <div class="qfoot">
+        <button class="btn pri" id="b-conf" onclick="confirmarE()" disabled>Confirmar resposta</button>
+        <button class="btn" id="b-next" onclick="proximaE()" style="display:none">${pos+1<quiz.length?'Próxima questão →':'Ver resultado'}</button>
+      </div>
+    </div>`;
+}
+function escolherE(i){
+  if(respondida)return;sel=i;
+  document.querySelectorAll(".alt").forEach(el=>el.classList.toggle("sel",+el.dataset.i===i));
+  document.getElementById("b-conf").disabled=false;
+}
+function confirmarE(){
+  if(sel===null||respondida)return;respondida=true;
+  const q=quiz[pos];const acertou=sel===q.cor;if(acertou)acertos++;
+  document.querySelectorAll(".alt").forEach(el=>{
+    const i=+el.dataset.i;el.classList.add("lock");el.onclick=null;
+    if(i===q.cor)el.classList.add("ok");else if(i===sel)el.classList.add("no");
+  });
+  document.getElementById("com").innerHTML=`<div class="com"><b>${acertou?"Correto. "+ELOGIOS[Math.floor(Math.random()*ELOGIOS.length)]:"Resposta correta: "+("ABCDE"[q.cor])+". "+CONSOLOS[Math.floor(Math.random()*CONSOLOS.length)]}</b><br>${q.com}</div>`;
+  registrar(q,acertou,sel);
+  document.getElementById("b-conf").style.display="none";
+  document.getElementById("b-next").style.display="block";
+}
+function proximaE(){pos++;if(pos<quiz.length)renderEstudo();else resultadoEstudo();}
+function resultadoEstudo(){
+  const pct=Math.round((acertos/quiz.length)*100);
+  const cor=pct>=70?"var(--jade)":pct>=50?"var(--gold2)":"var(--crimson)";
+  let msg,han;
+  if(pct>=70){msg="Domínio de cultivador. Mantenha a constância e a aprovação se aproxima.";han="蓝忘机 · Lan Wangji aprova";}
+  else if(pct>=50){msg="Caminho promissor. Reforce os pontos fracos no modo Revisão.";han="魏无羡 · siga em frente";}
+  else{msg="O cultivo apenas começou. Revise os erros com calma — cada um é uma lição.";han="不忘初心 · não esqueça o início";}
+  document.getElementById("quiz").innerHTML=`
+    <div class="result">
+      <div class="rscore" style="color:${cor}">${pct}%</div>
+      <div class="rlabel">${acertos} de ${quiz.length} questões corretas</div>
+      <div class="rmsg">${msg}</div><div class="rhan">${han}</div>
+      <div class="qfoot" style="max-width:380px;margin:22px auto 0">
+        <button class="btn pri" onclick="voltarConfig()">Novo</button>
+        <button class="btn" onclick="tab('rev')">Ir para revisão</button>
+      </div>
+    </div>`;
+}
+
+/* ═══════════ MODO SIMULADO DE PROVA ═══════════ */
+function iniciarTimer(){
+  clearInterval(timerId);
+  timerId=setInterval(()=>{
+    segRestantes--;
+    atualizarRelogio();
+    if(segRestantes<=0){clearInterval(timerId);finalizarProva(true);}
+  },1000);
+}
+function fmtTempo(s){
+  const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),x=s%60;
+  return (h>0?String(h).padStart(2,"0")+":":"")+String(m).padStart(2,"0")+":"+String(x).padStart(2,"0");
+}
+function atualizarRelogio(){
+  const el=document.getElementById("clock");
+  if(!el)return;
+  el.textContent=fmtTempo(Math.max(0,segRestantes));
+  el.classList.toggle("warn",segRestantes<=60);
+}
+function renderProva(){
+  const q=quiz[pos];
+  const respondidas=respostas.filter(r=>r!==null).length;
+  const navg=quiz.map((_,i)=>{
+    let c="navg";
+    if(respostas[i]!==null)c+=" done";
+    if(flags[i])c+=" flag";
+    if(i===pos)c+=" curr";
+    return `<button class="${c}" onclick="irPara(${i})">${i+1}</button>`;
+  }).join("");
+  const alts=q.alt.map((a,i)=>`<div class="alt ${respostas[pos]===i?'sel':''}" data-i="${i}" onclick="escolherP(${i})"><span class="lt">${"ABCDE"[i]}</span><span>${a}</span></div>`).join("");
+  document.getElementById("quiz").innerHTML=`
+    <div class="timer">
+      <div><div class="tlabel">Tempo restante</div><div class="clock" id="clock">${fmtTempo(segRestantes)}</div></div>
+      <div style="text-align:right"><div class="tlabel">Respondidas</div><div class="tprog">${respondidas} / ${quiz.length}</div></div>
+    </div>
+    <div class="qmeta"><span>Questão <b>${pos+1}</b> de <b>${quiz.length}</b></span><span>${MATMAP[q.mat]}</span></div>
+    <div class="qcard">
+      <div class="qtext">${q.q}</div>
+      <div id="alts">${alts}</div>
+      <div class="simbtns">
+        <button class="btn ${flags[pos]?'pri':''} flagbtn" onclick="toggleFlag()">${flags[pos]?'★ Marcada':'☆ Marcar'}</button>
+        <button class="btn" onclick="anterior()" ${pos===0?'disabled':''}>← Anterior</button>
+        <button class="btn pri" onclick="proximaP()">${pos+1<quiz.length?'Próxima →':'Revisar e finalizar'}</button>
+      </div>
+      <div class="navgrid">${navg}</div>
+      <div class="small" style="text-align:left">Verde = respondida · Dourado = marcada para revisar · Borda vermelha = atual. Toque num número para ir direto.</div>
+    </div>`;
+  atualizarRelogio();
+}
+function escolherP(i){
+  respostas[pos]=i;
+  document.querySelectorAll(".alt").forEach(el=>el.classList.toggle("sel",+el.dataset.i===i));
+  // atualiza marcador da grade sem re-render completo
+  const navs=document.querySelectorAll(".navg");
+  if(navs[pos])navs[pos].classList.add("done");
+  const resp=respostas.filter(r=>r!==null).length;
+  const tp=document.querySelector(".tprog");if(tp)tp.textContent=resp+" / "+quiz.length;
+}
+function toggleFlag(){flags[pos]=!flags[pos];renderProva();}
+function irPara(i){pos=i;renderProva();}
+function anterior(){if(pos>0){pos--;renderProva();}}
+function proximaP(){if(pos+1<quiz.length){pos++;renderProva();}else telaRevisaoFinal();}
+
+function telaRevisaoFinal(){
+  const respondidas=respostas.filter(r=>r!==null).length;
+  const embranco=quiz.length-respondidas;
+  const marcadas=flags.filter(f=>f).length;
+  const grid=quiz.map((_,i)=>{
+    let c="navg";if(respostas[i]!==null)c+=" done";if(flags[i])c+=" flag";
+    return `<button class="${c}" onclick="irPara(${i})">${i+1}</button>`;
+  }).join("");
+  document.getElementById("quiz").innerHTML=`
+    <div class="timer">
+      <div><div class="tlabel">Tempo restante</div><div class="clock" id="clock">${fmtTempo(segRestantes)}</div></div>
+      <div style="text-align:right"><div class="tlabel">Respondidas</div><div class="tprog">${respondidas} / ${quiz.length}</div></div>
+    </div>
+    <div class="qcard">
+      <div class="qtag">Antes de entregar</div>
+      <div class="qtext">Você respondeu <b>${respondidas}</b> de ${quiz.length}. Em branco: <b>${embranco}</b> · Marcadas para revisar: <b>${marcadas}</b>.</div>
+      <div class="navgrid">${grid}</div>
+      <div class="small" style="text-align:left">Toque num número para voltar à questão. O relógio continua correndo.</div>
+      <div class="confirmbox">Ao entregar, a prova é corrigida e o gabarito comentado é liberado. Esta ação encerra o cronômetro.</div>
+      <div class="simbtns">
+        <button class="btn" onclick="renderProva()">← Continuar revisando</button>
+        <button class="btn pri" onclick="finalizarProva(false)">Entregar prova</button>
+      </div>
+    </div>`;
+  atualizarRelogio();
+}
+
+function finalizarProva(porTempo){
+  clearInterval(timerId);
+  // corrige
+  acertos=0;
+  quiz.forEach((q,i)=>{
+    const acertou=respostas[i]===q.cor;
+    if(acertou)acertos++;
+    registrar(q,acertou,respostas[i]);
+  });
+  const pct=Math.round((acertos/quiz.length)*100);
+  const cor=pct>=70?"var(--jade)":pct>=50?"var(--gold2)":"var(--crimson)";
+  const respondidas=respostas.filter(r=>r!==null).length;
+  let msg,han;
+  if(pct>=70){msg="Desempenho de aprovação. Constância e ritmo de prova afiados.";han="蓝忘机 · Lan Wangji aprova";}
+  else if(pct>=50){msg="Na faixa de corte. Ajuste gestão de tempo e reforce os pontos fracos.";han="魏无羡 · siga em frente";}
+  else{msg="Hora de intensificar. Revise os erros e refaça o simulado.";han="不忘初心 · não esqueça o início";}
+  const lista=quiz.map((q,i)=>{
+    const r=respostas[i];
+    const st = r===null?'<span class="rs blank">Branco</span>':(r===q.cor?'<span class="rs ok">Acertou</span>':'<span class="rs no">Errou</span>');
+    return `<div class="revrow" onclick="verGabarito(${i})"><span class="rn">${i+1}</span><span style="flex:1;font-size:12.5px">${MATMAP[q.mat]} · ${q.dif}</span>${st}</div>`;
+  }).join("");
+  document.getElementById("quiz").innerHTML=`
+    <div class="result">
+      ${porTempo?'<div class="rlabel" style="color:var(--crimson);margin-bottom:8px">⏱ Tempo esgotado — prova encerrada automaticamente</div>':''}
+      <div class="rscore" style="color:${cor}">${pct}%</div>
+      <div class="rlabel">${acertos} de ${quiz.length} corretas · ${respondidas} respondidas</div>
+      <div class="rmsg">${msg}</div><div class="rhan">${han}</div>
+    </div>
+    <div class="card" style="margin-top:14px"><div class="clabel">Gabarito — toque numa questão para ver o comentário</div>${lista}</div>
+    <div id="gabbox"></div>
+    <div class="qfoot"><button class="btn pri" onclick="voltarConfig()">Novo simulado</button><button class="btn" onclick="tab('rev')">Ver questões erradas</button></div>`;
+}
+function verGabarito(i){
+  const q=quiz[i];const r=respostas[i];
+  const alts=q.alt.map((a,k)=>{
+    let c="alt lock";if(k===q.cor)c+=" ok";else if(k===r)c+=" no";
+    return `<div class="${c}"><span class="lt">${"ABCDE"[k]}</span><span>${a}</span></div>`;
+  }).join("");
+  document.getElementById("gabbox").innerHTML=`
+    <div class="qcard" style="margin-top:11px">
+      <span class="qtag ${q.hot?'hot':''}">Questão ${i+1} · ${MATMAP[q.mat]} · ${q.dif}</span>
+      <div class="qtext">${q.q}</div>${alts}
+      <div class="com"><b>Resposta correta: ${"ABCDE"[q.cor]}.</b><br>${q.com}</div>
+    </div>`;
+  document.getElementById("gabbox").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+/* ───────── REGISTRO (histórico + revisão) ───────── */
+function registrar(q,acertou,escolha){
+  if(!historico[q.mat])historico[q.mat]={total:0,acertos:0};
+  historico[q.mat].total++;if(acertou)historico[q.mat].acertos++;
+  LS.set("hist",historico);
+  if(!acertou && escolha!==null && !revisar.some(r=>r.q===q.q)){
+    revisar.push({...q,marcada:escolha});LS.set("rev",revisar);
+  }
+}
+
+function voltarConfig(){
+  clearInterval(timerId);
+  document.getElementById("quiz").style.display="none";
+  document.getElementById("modepick").style.display="block";
+  document.getElementById("config").style.display="block";
+  setModo(modo);
+}
+
+/* ───────── ABAS ───────── */
+function tab(t){
+  if(t!=="sim")clearInterval(timerId);
+  ["sim","rev","his"].forEach(x=>{
+    document.getElementById("t-"+x).style.display=x===t?"block":"none";
+    document.getElementById("nb-"+x).classList.toggle("on",x===t);
+  });
+  if(t==="rev")renderRevisao();
+  if(t==="his")renderHistorico();
+  if(t==="sim"&&document.getElementById("quiz").style.display==="none"){
+    document.getElementById("modepick").style.display="block";
+    document.getElementById("config").style.display="block";
+    renderConfig();
+  }
+}
+
+/* ───────── REVISÃO ───────── */
+function renderRevisao(){
+  const el=document.getElementById("t-rev");
+  if(revisar.length===0){el.innerHTML=`<div class="empty">Nenhuma questão para revisar ainda.<br>As questões que você errar aparecem aqui automaticamente.</div>`;return;}
+  const itens=revisar.map((q,idx)=>`
+    <div class="revq">
+      <div class="t">${q.q}</div>
+      <div class="badges">
+        <span class="bdg mat">${MATMAP[q.mat]}</span>
+        <span class="bdg no">Você marcou ${"ABCDE"[q.marcada]}</span>
+        <span class="bdg ok">Correta: ${"ABCDE"[q.cor]}</span>
+      </div>
+      <div class="com" style="margin-top:11px">${q.com}</div>
+      <div class="qfoot"><button class="btn" onclick="removerRev(${idx})">✓ Entendi, remover</button></div>
+    </div>`).join("");
+  el.innerHTML=`<div class="stats"><div class="stat"><div class="v" style="color:var(--crimson)">${revisar.length}</div><div class="l">Questões para revisar</div></div></div>${itens}`;
+}
+function removerRev(idx){revisar.splice(idx,1);LS.set("rev",revisar);renderRevisao();}
+
+/* ───────── HISTÓRICO ───────── */
+function renderHistorico(){
+  const el=document.getElementById("t-his");
+  const keys=Object.keys(historico);
+  if(keys.length===0){el.innerHTML=`<div class="empty">Nenhum dado de desempenho ainda.<br>Faça um simulado para começar a acompanhar sua evolução.</div>`;return;}
+  let tot=0,ac=0;keys.forEach(k=>{tot+=historico[k].total;ac+=historico[k].acertos;});
+  const gpct=Math.round((ac/tot)*100);
+  const gcor=gpct>=70?"var(--jade)":gpct>=50?"var(--gold2)":"var(--crimson)";
+  const rows=keys.sort((a,b)=>(historico[a].acertos/historico[a].total)-(historico[b].acertos/historico[b].total)).map(k=>{
+    const h=historico[k];const p=Math.round((h.acertos/h.total)*100);
+    const c=p>=70?"var(--jade)":p>=50?"var(--gold2)":"var(--crimson)";
+    return `<div class="hrow"><div class="hmat">${MATMAP[k]||k}</div><div class="hbarw"><div class="hbar" style="width:${p}%;background:${c}"></div></div><div class="hpct" style="color:${c}">${p}%</div><div class="hfrac">${h.acertos}/${h.total}</div></div>`;
+  }).join("");
+  el.innerHTML=`
+    <div class="stats">
+      <div class="stat"><div class="v" style="color:${gcor}">${gpct}%</div><div class="l">Aproveitamento</div></div>
+      <div class="stat"><div class="v">${tot}</div><div class="l">Questões feitas</div></div>
+      <div class="stat"><div class="v" style="color:var(--ok)">${ac}</div><div class="l">Acertos</div></div>
+    </div>
+    <div class="card"><div class="clabel">Desempenho por matéria (do mais fraco ao mais forte)</div>${rows}</div>
+    <div class="qfoot"><button class="btn" onclick="limparHist()">Limpar histórico</button></div>`;
+}
+function limparHist(){if(confirm("Apagar todo o histórico de desempenho? (não afeta as questões de revisão)")){historico={};LS.set("hist",historico);renderHistorico();}}
+
+/* ───────── INIT ───────── */
+setModo("estudo");
+</script>
+</body>
+</html>
