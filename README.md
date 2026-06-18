@@ -6,7 +6,7 @@ Funciona no navegador, no computador ou no celular, **sem login e sem chave de A
 
 ## Status do banco — COMPLETO
 
-**277 questões** nas 14 matérias do edital:
+**314 questões** nas 14 matérias do edital:
 
 | Matéria | Questões |
 |---|---|
@@ -30,6 +30,32 @@ Mix de dificuldade: **69 fáceis · 138 médias · 70 difíceis**. 163 marcadas 
 Todos os gabaritos foram revisados (conferência de correção factual, lógica das questões "exceto/incorreto" e recálculo independente das questões numéricas). 82 comentários trazem nota explícita sobre **como o tema costuma ser cobrado pela FGV**.
 
 ---
+
+## Login e progresso na nuvem (Supabase)
+
+Esta versão tem **login por e-mail e senha** via Supabase. O progresso (histórico
+e revisão) é salvo na nuvem e sincroniza entre celular, notebook e qualquer
+dispositivo. Há também a opção **"Continuar sem conta"**, que salva só no aparelho.
+
+As chaves do Supabase já estão configuradas dentro do `index.html` (a chave usada
+é a **anon public**, que é segura para ficar no código — a proteção real vem das
+políticas de segurança RLS criadas no banco). Configuração detalhada em
+`SUPABASE-passo-a-passo.md`.
+
+
+
+### Questões estilo FGV (novo)
+Há **37 questões no formato real da banca FGV**: enunciados longos com contexto, formato "analise as afirmativas I, II, III", "à exceção de uma, assinale-a" e casos concretos pedindo aplicação. Elas aparecem marcadas com 📋 e podem ser filtradas no início (filtro **Estilo das questões → Só estilo FGV**). As 277 questões diretas continuam disponíveis para fixação rápida.
+
+
+
+### Alternativas embaralhadas (anti-vício)
+A ordem das alternativas é **sorteada a cada vez** que a questão aparece — assim a resposta certa nunca fica viciada numa mesma letra (ex.: sempre "B"). Os comentários descrevem a resposta pelo conteúdo, não pela letra.
+
+
+
+### Identidade visual: "Cultivo & Hype" 💜
+Tema original que mescla a estética da China clássica (tinta sumi-ê, jade, dourado, nós chineses, caracteres decorativos) com a energia carinhosa e roxa do fandom K-pop. Traz um **mascote original** — Yùtù, o coelho de jade — que dá mensagens de reforço positivo com humor, em três humores (feliz, neutro, encorajando). As frases motivacionais são originais. Nenhuma imagem, personagem, rosto ou letra de música protegidos por direitos autorais é utilizada — tudo é ilustração vetorial própria (SVG).
 
 ## O que tem
 

@@ -6,14 +6,16 @@
 <title>Simulado SEPLAG-RJ · FGV 2026</title>
 <style>
   :root{
-    --ink:#1a1410;        /* tinta quase preta  */
-    --paper:#f4ecdb;      /* pergaminho         */
-    --paper2:#ece0c8;     /* pergaminho fundo   */
-    --jade:#3f6f5a;       /* verde Gusu Lan     */
+    --ink:#1a1410;        /* tinta sumi-ê        */
+    --paper:#f4ecdb;      /* pergaminho          */
+    --paper2:#ece0c8;     /* pergaminho fundo    */
+    --jade:#3f6f5a;       /* verde jade (Gusu)   */
     --jade2:#578a72;
-    --gold:#b8860b;       /* dourado            */
+    --gold:#b8860b;       /* dourado             */
     --gold2:#d4a017;
-    --crimson:#9c3b30;    /* vermelho Wei Wuxian*/
+    --purple:#7c5cbf;     /* roxo do fandom 💜   */
+    --purple2:#a98fd9;    /* lilás suave         */
+    --crimson:#c2456b;    /* coral-magenta hype  */
     --line:#cdb98f;
     --ok:#3B6D11;
     --okbg:#e7f0d6;
@@ -28,8 +30,9 @@
     color:var(--ink);
     line-height:1.55;
     background-image:
-      radial-gradient(circle at 18% 12%, rgba(184,134,11,.05), transparent 40%),
-      radial-gradient(circle at 82% 88%, rgba(63,111,90,.06), transparent 42%);
+      radial-gradient(circle at 18% 10%, rgba(184,134,11,.06), transparent 38%),
+      radial-gradient(circle at 85% 18%, rgba(124,92,191,.07), transparent 40%),
+      radial-gradient(circle at 82% 90%, rgba(63,111,90,.06), transparent 42%);
     min-height:100vh;
   }
   .wrap{max-width:760px;margin:0 auto;padding:18px 16px 60px}
@@ -37,20 +40,22 @@
   /* HEADER */
   header{
     border:1px solid var(--line);
-    background:linear-gradient(180deg,#fbf5e7,#efe4ce);
+    background:linear-gradient(135deg,#fbf5e7 0%,#efe4ce 60%,#ece3f2 100%);
     border-radius:14px;
     padding:18px 20px;
     position:relative;
     overflow:hidden;
-    box-shadow:0 2px 0 rgba(184,134,11,.12);
+    box-shadow:0 2px 0 rgba(124,92,191,.12);
   }
-  header .deco{position:absolute;inset:0;pointer-events:none;opacity:.5}
+  header .deco{position:absolute;inset:0;pointer-events:none;opacity:.55}
   .h-title{font-size:21px;font-weight:700;letter-spacing:.5px;color:var(--ink)}
   .h-han{color:var(--jade);font-weight:700}
   .h-sub{font-size:12.5px;color:#7a6a4d;margin-top:3px;letter-spacing:.3px}
   .h-badge{
     position:absolute;top:14px;right:18px;
-    font-family:serif;font-size:22px;color:var(--gold);opacity:.55;
+    font-family:serif;font-size:22px;
+    background:linear-gradient(180deg,var(--gold),var(--purple));
+    -webkit-background-clip:text;background-clip:text;color:transparent;opacity:.7;
   }
 
   /* NAV */
@@ -62,7 +67,19 @@
     transition:.15s;
   }
   .nb:hover{background:#f2e8d2}
-  .nb.on{background:var(--jade);color:#f4ecdb;border-color:var(--jade)}
+  .nb.on{background:linear-gradient(135deg,var(--jade),var(--purple));color:#f7f2e8;border-color:var(--jade)}
+
+  /* ===== MASCOTE YÙTÙ + REFORÇO ===== */
+  .mascote{display:block;margin:4px auto 0;width:118px;height:auto;overflow:visible}
+  .mascote.sm{width:74px}
+  .cheer{
+    text-align:center;font-size:14px;line-height:1.55;color:#5a4d39;
+    background:linear-gradient(180deg,#f3eefb,#efe9f7);
+    border:1px solid var(--purple2);border-radius:12px;padding:12px 14px;margin:10px auto 0;max-width:430px;
+  }
+  .cheer b{color:var(--purple)}
+  .cheer .han{font-family:serif;color:var(--jade);font-size:13px}
+  .borahae{color:var(--purple);font-weight:700}
 
   /* CARDS DE CONFIG */
   .card{
@@ -226,6 +243,39 @@
     border:1px solid var(--crimson);background:#fbeee9;border-radius:11px;
     padding:14px;margin-top:10px;font-size:13px;color:#7a3a30
   }
+  /* ===== LOGIN / CONTA ===== */
+  .userbar{
+    display:flex;align-items:center;gap:8px;justify-content:flex-end;
+    font-size:12px;color:#7a6a4d;margin:-4px 0 10px;
+  }
+  .userbar b{color:var(--jade)}
+  .userbar button{
+    border:1px solid var(--line);background:#f8f1e1;color:#6f5f44;
+    font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:14px;cursor:pointer;
+  }
+  .userbar button:hover{background:#f2e8d2}
+  .syncdot{font-size:11px}
+  .syncdot.ok{color:var(--ok)}
+  .syncdot.off{color:#b08a3a}
+
+  .loginwrap{max-width:380px;margin:6px auto 0}
+  .logincard{border:1px solid var(--line);background:#fbf6ea;border-radius:13px;padding:20px 18px}
+  .logincard h2{font-size:17px;color:var(--ink);margin-bottom:4px}
+  .logincard .sub{font-size:12.5px;color:#7a6a4d;margin-bottom:15px;line-height:1.5}
+  .field{margin-bottom:11px}
+  .field label{display:block;font-size:11.5px;font-weight:700;color:#6f5f44;text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+  .field input{
+    width:100%;border:1px solid var(--line);background:#fff;border-radius:8px;
+    padding:11px 12px;font-size:14px;color:var(--ink);font-family:inherit;
+  }
+  .field input:focus{outline:none;border-color:var(--jade)}
+  .loginmsg{font-size:12.5px;border-radius:8px;padding:9px 11px;margin:4px 0 11px;display:none}
+  .loginmsg.err{display:block;background:var(--nobg);color:var(--no)}
+  .loginmsg.ok{display:block;background:var(--okbg);color:var(--ok)}
+  .loginswitch{font-size:12.5px;color:#7a6a4d;text-align:center;margin-top:13px}
+  .loginswitch a{color:var(--jade);font-weight:600;cursor:pointer;text-decoration:underline}
+  .guestlink{text-align:center;margin-top:14px}
+  .guestlink a{font-size:12px;color:#9a8a6d;cursor:pointer;text-decoration:underline}
 </style>
 </head>
 <body>
@@ -234,12 +284,36 @@
   <header>
     <svg class="deco" viewBox="0 0 760 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 60 Q120 44 240 60 Q360 76 480 60 Q600 44 720 60 L760 60" stroke="#b8860b" stroke-width="0.7" fill="none" opacity="0.4"/>
+      <path d="M0 70 Q140 56 280 70 Q420 84 560 70 Q650 60 760 70" stroke="#7c5cbf" stroke-width="0.6" fill="none" opacity="0.35"/>
       <circle cx="380" cy="58" r="16" stroke="#3f6f5a" stroke-width="0.5" fill="none" opacity="0.4"/>
+      <path d="M373 64 c0 -3 7 -3 7 1 c0 -4 7 -4 7 0 c0 4 -7 8 -7 8 c0 0 -7 -4 -7 -9 Z" fill="#7c5cbf" opacity="0.4"/>
     </svg>
-    <div class="h-badge">陈情令</div>
+    <div class="h-badge">修道 · 💜</div>
     <div class="h-title"><span class="h-han">修道</span> · Simulado SEPLAG-RJ</div>
-    <div class="h-sub">FGV 2026 · EPPGG &amp; APO · 277 questões · sem login</div>
+    <div class="h-sub">FGV 2026 · EPPGG &amp; APO · 314 questões · cultivo &amp; hype 💜</div>
   </header>
+
+  <!-- ===== TELA DE LOGIN ===== -->
+  <div id="loginscreen" class="loginwrap" style="display:none">
+    <div class="logincard">
+      <div id="login-mascote" style="margin-bottom:6px"></div>
+      <h2 id="login-title">Entrar</h2>
+      <div class="sub" id="login-sub">Acesse com e-mail e senha para salvar seu progresso e estudar de qualquer dispositivo.</div>
+      <div class="field"><label>E-mail</label><input id="login-email" type="email" autocomplete="email" placeholder="seu@email.com"></div>
+      <div class="field"><label>Senha</label><input id="login-pass" type="password" autocomplete="current-password" placeholder="mínimo 6 caracteres"></div>
+      <div class="loginmsg" id="login-msg"></div>
+      <button class="bmain" id="login-btn" onclick="fazerAuth()">Entrar</button>
+      <div class="loginswitch" id="login-switch">
+        Ainda não tem conta? <a onclick="alternarAuth()">Criar conta</a>
+      </div>
+      <div class="guestlink"><a onclick="entrarConvidado()">Continuar sem conta (só neste aparelho)</a></div>
+    </div>
+  </div>
+
+  <!-- ===== APP (aparece após login/convidado) ===== -->
+  <div id="appcontent" style="display:none">
+
+  <div class="userbar" id="userbar"></div>
 
   <nav>
     <button class="nb on" id="nb-sim" onclick="tab('sim')">⚔ Praticar</button>
@@ -249,6 +323,9 @@
 
   <!-- ===== PRATICAR (escolha de modo + config) ===== -->
   <section id="t-sim">
+
+    <!-- frase-piscadela de abertura -->
+    <div id="frase-abertura" class="cheer" style="margin-top:0;margin-bottom:12px;display:none"></div>
 
     <!-- escolha do modo -->
     <div id="modepick">
@@ -279,6 +356,10 @@
       <div class="card cg">
         <div class="clabel">✦ Focar no que mais cai?</div>
         <div id="c-hot" class="chips"></div>
+      </div>
+      <div class="card cj">
+        <div class="clabel">✦ Estilo das questões</div>
+        <div id="c-estilo" class="chips"></div>
       </div>
 
       <!-- bloco específico do simulado de prova -->
@@ -311,9 +392,12 @@
   <section id="t-rev" style="display:none"></section>
   <section id="t-his" style="display:none"></section>
 
+  </div><!-- /appcontent -->
+
   <div class="small">陈情令 · The Untamed · 修道 — estude com disciplina de cultivador.</div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="questoes.js"></script>
 <script>
 /* ───────── MATÉRIAS ───────── */
@@ -334,8 +418,16 @@ const MATERIAS = [
   {id:"legserv",l:"Estatuto dos Servidores RJ",hot:true},
 ];
 const MATMAP = Object.fromEntries(MATERIAS.map(m=>[m.id,m.l]));
+/* converte quebras de linha do enunciado em HTML, preservando o texto seguro */
+function fmtEnunciado(t){
+  return String(t)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/\n/g,"<br>");
+}
 const DIFS = ["Todas","Fácil","Médio","Difícil"];
 const HOTS = ["Sim, foco no que mais cai","Não, qualquer questão"];
+const ESTILOS = [["todos","Todas"],["fgv","📋 Só estilo FGV"],["diretas","Diretas (rápidas)"]];
 const QTDS = [5,10,15,20];
 
 /* presets de prova (baseados no formato FGV Seplag-RJ) */
@@ -351,7 +443,7 @@ const CUSTOM_QT = [
 
 /* ───────── ESTADO ───────── */
 let modo = "estudo"; // "estudo" | "prova"
-let cfg = {mat:"todas",dif:"Todas",hot:false,qtd:5,preset:"gerais",qt:{q:20,min:40}};
+let cfg = {mat:"todas",dif:"Todas",hot:false,estilo:"todos",qtd:5,preset:"gerais",qt:{q:20,min:40}};
 let quiz=[], pos=0, acertos=0, sel=null, respondida=false;
 let respostas=[];     // simulado: índice escolhido por questão (null = em branco)
 let flags=[];         // simulado: questões marcadas p/ revisão
@@ -361,11 +453,138 @@ const LS = {
   get(k,def){try{return JSON.parse(localStorage.getItem("seplag_"+k))??def;}catch(e){return def;}},
   set(k,v){try{localStorage.setItem("seplag_"+k,JSON.stringify(v));}catch(e){}}
 };
+
+/* ===== SUPABASE (login + progresso na nuvem) ===== */
+const SUPABASE_URL  = "https://zgcniuxjksxtesbdnzuj.supabase.co";
+const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnY25pdXhqa3N4dGVzYmRuenVqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE3NDQwNjksImV4cCI6MjA5NzMyMDA2OX0.d4qpK3bf-xNB7SSnxNv2T9qMRLfMiKS9j_PxAiZ1Nxw";
+
+let sb=null, usuario=null, modoConvidado=false, salvarTimer=null;
+try{ sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON); }catch(e){ sb=null; }
+
 let historico = LS.get("hist",{});
 let revisar   = LS.get("rev",[]);
 
-const ELOGIOS=["Mn. Correto.","Hanguang-Jun aprova.","Teu esforço não passa despercebido.","Bem feito. Continue assim.","A diligência é virtude.","O caminho do cultivo exige persistência — e você o trilha bem."];
-const CONSOLOS=["Errar faz parte do cultivo. Levante-se.","Wei Ying também caía — e seguia em frente.","Anote no modo Revisão e volte mais forte.","Um tropeço hoje é uma lição amanhã.","Não desanime; a próxima é sua."];
+/* salva o progresso: na nuvem se logado, no aparelho se convidado */
+function salvarProgresso(){
+  if(usuario && sb){
+    // debounce para não gravar a cada clique
+    clearTimeout(salvarTimer);
+    setSync("salvando");
+    salvarTimer=setTimeout(async ()=>{
+      try{
+        await sb.from("progresso").upsert({
+          user_id: usuario.id,
+          historico: historico,
+          revisar: revisar,
+          atualizado_em: new Date().toISOString()
+        });
+        setSync("ok");
+      }catch(e){ setSync("erro"); }
+    }, 900);
+  }else{
+    LS.set("hist",historico); LS.set("rev",revisar);
+  }
+}
+
+async function carregarProgressoNuvem(){
+  if(!usuario||!sb)return;
+  try{
+    const {data,error}=await sb.from("progresso").select("historico,revisar").eq("user_id",usuario.id).maybeSingle();
+    if(error)throw error;
+    if(data){
+      historico = data.historico || {};
+      revisar   = data.revisar   || [];
+    }else{
+      // primeira vez: cria a linha (e aproveita o que houver salvo localmente)
+      await sb.from("progresso").insert({user_id:usuario.id,historico,revisar});
+    }
+    setSync("ok");
+  }catch(e){ setSync("erro"); }
+}
+
+function setSync(estado){
+  const el=document.getElementById("syncstate");
+  if(!el)return;
+  if(estado==="salvando"){el.textContent="• sincronizando…";el.className="syncdot off";}
+  else if(estado==="ok"){el.textContent="• salvo na nuvem";el.className="syncdot ok";}
+  else if(estado==="erro"){el.textContent="• erro ao salvar";el.className="syncdot off";}
+}
+
+const ELOGIOS=[
+  "Acertou! O cultivo está rendendo. 玉兔 está orgulhoso.",
+  "Mandou bem! Energia de bias, foco de cultivador. 💜",
+  "Correto! Esse é o caminho — disciplina e brilho.",
+  "Boa! Mais um passo na sua era de 'aprender a se amar' primeiro. ✨",
+  "Isso! Tá no ritmo — fé na fase mais bonita da jornada.",
+  "Perfeito. A constância vence: persona de quem vai passar.",
+  "Acertou! Mic drop nessa questão. 🎤 Segue assim.",
+  "Boa! Sua melhor era é agora — e ela só está começando."
+];
+const CONSOLOS=[
+  "Errou, mas tá tudo bem. Respira e segue — borahae 💜",
+  "Faz parte do cultivo cair e levantar. Bora de novo!",
+  "Anota na revisão e volta mais forte. Você consegue. 💪",
+  "Errar é parte da fase mais bonita e caótica da jornada. Segue!",
+  "Tá quase! Atravessa essa noite que o amanhecer vem. 🌅",
+  "Não se entrega agora — responde a chamada e levanta de novo.",
+  "Um tropeço hoje é gabarito amanhã. Ame-se primeiro, erre sem medo."
+];
+/* frases-piscadela que aparecem ao abrir (alusão a eras/álbuns, sem versos) */
+const FRASES_ABERTURA=[
+  "玉兔 diz: hoje é dia de cultivar a sua melhor era. 💜",
+  "Antes de estudar, respira: você está na fase mais bonita da jornada.",
+  "Lembrete do dia: amar-se primeiro também é estratégia de aprovação.",
+  "Bora atravessar a noite de estudo — o amanhecer (e a posse) vem.",
+  "Foco de cultivador, coração de ARMY. Você consegue. 💜",
+  "Cada questão de hoje é um verso da sua própria história de aprovação.",
+  "Sem pressa e sem pausa: o mapa para a alma do edital é a constância."
+];
+
+/* mascote Yùtù (coelho de jade) — SVG original, 3 humores: 'neutro','feliz','anima' */
+function mascote(humor,cls){
+  const c=cls||"";
+  const base=`<defs>
+    <linearGradient id="mj" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6fae93"/><stop offset="1" stop-color="#3f6f5a"/></linearGradient>
+    <radialGradient id="mc" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#c2456b" stop-opacity="0.5"/><stop offset="1" stop-color="#c2456b" stop-opacity="0"/></radialGradient>
+  </defs>
+  <ellipse cx="80" cy="166" rx="46" ry="9" fill="#3f6f5a" opacity="0.12"/>`;
+  if(humor==="feliz"){
+    return `<svg class="mascote ${c}" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">${base}
+      <path d="M60 56 C52 20 44 8 50 4 C58 2 66 26 70 50 Z" fill="url(#mj)"/><path d="M100 56 C108 20 116 8 110 4 C102 2 94 26 90 50 Z" fill="url(#mj)"/>
+      <ellipse cx="80" cy="120" rx="40" ry="42" fill="url(#mj)"/><circle cx="80" cy="80" r="38" fill="url(#mj)"/>
+      <ellipse cx="80" cy="128" rx="24" ry="28" fill="#eaf3ee" opacity="0.9"/>
+      <circle cx="58" cy="88" r="9" fill="url(#mc)"/><circle cx="102" cy="88" r="9" fill="url(#mc)"/>
+      <path d="M61 78 Q66 72 71 78" stroke="#1a1410" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M89 78 Q94 72 99 78" stroke="#1a1410" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <circle cx="80" cy="85" r="2" fill="#c2456b"/><path d="M74 89 Q80 96 86 89" stroke="#1a1410" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M44 110 Q30 96 34 88" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M116 110 Q130 96 126 88" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <text x="34" y="80" font-size="14" text-anchor="middle">✨</text><text x="126" y="80" font-size="14" text-anchor="middle">✨</text></svg>`;
+  }
+  if(humor==="anima"){
+    return `<svg class="mascote ${c}" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">${base}
+      <path d="M60 56 C54 26 48 14 53 9 C60 10 67 30 70 50 Z" fill="url(#mj)"/><path d="M100 56 C106 28 112 18 108 12 C101 14 94 32 90 50 Z" fill="url(#mj)"/>
+      <ellipse cx="80" cy="120" rx="40" ry="42" fill="url(#mj)"/><circle cx="80" cy="80" r="38" fill="url(#mj)"/>
+      <ellipse cx="80" cy="128" rx="24" ry="28" fill="#eaf3ee" opacity="0.9"/>
+      <circle cx="58" cy="90" r="9" fill="url(#mc)"/><circle cx="102" cy="90" r="9" fill="url(#mc)"/>
+      <circle cx="66" cy="80" r="5" fill="#1a1410"/><circle cx="94" cy="80" r="5" fill="#1a1410"/>
+      <circle cx="67.5" cy="78.5" r="1.6" fill="#fff"/><circle cx="95.5" cy="78.5" r="1.6" fill="#fff"/>
+      <path d="M59 70 Q66 68 72 71" stroke="#1a1410" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M88 71 Q94 68 101 70" stroke="#1a1410" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <circle cx="80" cy="88" r="2" fill="#c2456b"/><path d="M76 94 Q80 92 84 94" stroke="#1a1410" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M118 116 Q132 110 128 100" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/><text x="128" y="96" font-size="13" text-anchor="middle">💪</text></svg>`;
+  }
+  // neutro
+  return `<svg class="mascote ${c}" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">${base}
+    <path d="M60 56 C52 20 44 8 50 4 C58 2 66 26 70 50 Z" fill="url(#mj)"/><path d="M100 56 C108 20 116 8 110 4 C102 2 94 26 90 50 Z" fill="url(#mj)"/>
+    <path d="M61 50 C56 26 52 14 54 11 C58 12 62 30 65 48 Z" fill="#a98fd9" opacity="0.85"/><path d="M99 50 C104 26 108 14 106 11 C102 12 98 30 95 48 Z" fill="#a98fd9" opacity="0.85"/>
+    <ellipse cx="80" cy="120" rx="40" ry="42" fill="url(#mj)"/><circle cx="80" cy="80" r="38" fill="url(#mj)"/>
+    <ellipse cx="80" cy="128" rx="24" ry="28" fill="#eaf3ee" opacity="0.9"/>
+    <circle cx="58" cy="88" r="9" fill="url(#mc)"/><circle cx="102" cy="88" r="9" fill="url(#mc)"/>
+    <circle cx="66" cy="78" r="5.5" fill="#1a1410"/><circle cx="94" cy="78" r="5.5" fill="#1a1410"/>
+    <circle cx="68" cy="76" r="1.8" fill="#fff"/><circle cx="96" cy="76" r="1.8" fill="#fff"/>
+    <path d="M77 87 Q80 90 83 87" stroke="#1a1410" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="80" cy="85" r="2" fill="#c2456b"/>
+    <line x1="80" y1="150" x2="80" y2="158" stroke="#b8860b" stroke-width="2"/><path d="M80 158 l5 5 -5 5 -5 -5 Z" fill="#b8860b"/>
+    <path d="M74 170 c0 -4 6 -4 6 0 c0 -4 6 -4 6 0 c0 4 -6 8 -6 8 c0 0 -6 -4 -6 -8 Z" fill="#7c5cbf"/></svg>`;
+}
+
 
 /* ───────── MODO ───────── */
 function setModo(m){
@@ -400,6 +619,8 @@ function renderConfig(){
   DIFS.forEach(d=>cd.appendChild(chip(d,cfg.dif===d,()=>{cfg.dif=d;renderConfig();})));
   const ch=document.getElementById("c-hot");ch.innerHTML="";
   HOTS.forEach((h,i)=>ch.appendChild(chip(h,cfg.hot===(i===0),()=>{cfg.hot=(i===0);renderConfig();})));
+  const ce=document.getElementById("c-estilo");if(ce){ce.innerHTML="";
+    ESTILOS.forEach(([val,lab])=>ce.appendChild(chip(lab,cfg.estilo===val,()=>{cfg.estilo=val;renderConfig();})));}
   const cq=document.getElementById("c-qtd");cq.innerHTML="";
   QTDS.forEach(n=>cq.appendChild(chip(String(n),cfg.qtd===n,()=>{cfg.qtd=n;renderConfig();})));
 
@@ -426,9 +647,21 @@ function filtra(q){
   if(cfg.mat!=="todas"&&q.mat!==cfg.mat)return false;
   if(cfg.dif!=="Todas"&&q.dif!==cfg.dif)return false;
   if(cfg.hot&&!q.hot)return false;
+  if(cfg.estilo==="fgv"&&!q.fgv)return false;
+  if(cfg.estilo==="diretas"&&q.fgv)return false;
   return true;
 }
 function embaralhar(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+/* embaralha as alternativas de UMA questão e recalcula o índice da correta,
+   eliminando qualquer vício de posição (ex.: resposta sempre na letra B) */
+function embaralharAlternativas(q){
+  const idx = q.alt.map((_,i)=>i);          // [0,1,2,3,4]
+  const ordem = embaralhar(idx);            // nova ordem aleatória
+  const novasAlt = ordem.map(i=>q.alt[i]);  // alternativas reordenadas
+  const novaCor = ordem.indexOf(q.cor);     // onde a correta foi parar
+  return {...q, alt:novasAlt, cor:novaCor};
+}
 
 function iniciar(){
   let pool=BANCO.filter(filtra);
@@ -448,7 +681,7 @@ function iniciar(){
     qtd=Math.min(cfg.qtd,pool.length);
   }
 
-  quiz=embaralhar(pool).slice(0,qtd);
+  quiz=embaralhar(pool).slice(0,qtd).map(embaralharAlternativas);
   pos=0;acertos=0;
   respostas=new Array(quiz.length).fill(null);
   flags=new Array(quiz.length).fill(false);
@@ -476,8 +709,8 @@ function renderEstudo(){
     <div class="qbar"><i style="width:${pct}%"></i></div>
     <div class="qmeta"><span>Questão <b>${pos+1}</b> de <b>${quiz.length}</b></span><span>Acertos: <b>${acertos}</b></span></div>
     <div class="qcard">
-      <span class="qtag ${q.hot?'hot':''}">${MATMAP[q.mat]} · ${q.dif}${q.hot?' · 🔥 alta incidência':''}</span>
-      <div class="qtext">${q.q}</div>
+      <span class="qtag ${q.hot?'hot':''}">${MATMAP[q.mat]} · ${q.dif}${q.hot?' · 🔥 alta incidência':''}${q.fgv?' · 📋 estilo FGV':''}</span>
+      <div class="qtext">${fmtEnunciado(q.q)}</div>
       <div id="alts">${alts}</div>
       <div id="com"></div>
       <div class="qfoot">
@@ -507,12 +740,13 @@ function proximaE(){pos++;if(pos<quiz.length)renderEstudo();else resultadoEstudo
 function resultadoEstudo(){
   const pct=Math.round((acertos/quiz.length)*100);
   const cor=pct>=70?"var(--jade)":pct>=50?"var(--gold2)":"var(--crimson)";
-  let msg,han;
-  if(pct>=70){msg="Domínio de cultivador. Mantenha a constância e a aprovação se aproxima.";han="蓝忘机 · Lan Wangji aprova";}
-  else if(pct>=50){msg="Caminho promissor. Reforce os pontos fracos no modo Revisão.";han="魏无羡 · siga em frente";}
-  else{msg="O cultivo apenas começou. Revise os erros com calma — cada um é uma lição.";han="不忘初心 · não esqueça o início";}
+  let msg,han,hum;
+  if(pct>=70){msg="Domínio de cultivador! Constância de quem vai à posse. Segue brilhando.";han="精進不懈 · esforço sem pausa";hum="feliz";}
+  else if(pct>=50){msg="Caminho promissor. Reforça os pontos fracos na revisão e volta com tudo.";han="持之以恆 · persistência";hum="neutro";}
+  else{msg="O cultivo apenas começou. Revisa com calma — cada erro é uma lição. Bora! 💜";han="不忘初心 · não esqueça o início";hum="anima";}
   document.getElementById("quiz").innerHTML=`
     <div class="result">
+      ${mascote(hum)}
       <div class="rscore" style="color:${cor}">${pct}%</div>
       <div class="rlabel">${acertos} de ${quiz.length} questões corretas</div>
       <div class="rmsg">${msg}</div><div class="rhan">${han}</div>
@@ -558,9 +792,9 @@ function renderProva(){
       <div><div class="tlabel">Tempo restante</div><div class="clock" id="clock">${fmtTempo(segRestantes)}</div></div>
       <div style="text-align:right"><div class="tlabel">Respondidas</div><div class="tprog">${respondidas} / ${quiz.length}</div></div>
     </div>
-    <div class="qmeta"><span>Questão <b>${pos+1}</b> de <b>${quiz.length}</b></span><span>${MATMAP[q.mat]}</span></div>
+    <div class="qmeta"><span>Questão <b>${pos+1}</b> de <b>${quiz.length}</b></span><span>${MATMAP[q.mat]}${q.fgv?' · 📋 FGV':''}</span></div>
     <div class="qcard">
-      <div class="qtext">${q.q}</div>
+      <div class="qtext">${fmtEnunciado(q.q)}</div>
       <div id="alts">${alts}</div>
       <div class="simbtns">
         <button class="btn ${flags[pos]?'pri':''} flagbtn" onclick="toggleFlag()">${flags[pos]?'★ Marcada':'☆ Marcar'}</button>
@@ -625,10 +859,10 @@ function finalizarProva(porTempo){
   const pct=Math.round((acertos/quiz.length)*100);
   const cor=pct>=70?"var(--jade)":pct>=50?"var(--gold2)":"var(--crimson)";
   const respondidas=respostas.filter(r=>r!==null).length;
-  let msg,han;
-  if(pct>=70){msg="Desempenho de aprovação. Constância e ritmo de prova afiados.";han="蓝忘机 · Lan Wangji aprova";}
-  else if(pct>=50){msg="Na faixa de corte. Ajuste gestão de tempo e reforce os pontos fracos.";han="魏无羡 · siga em frente";}
-  else{msg="Hora de intensificar. Revise os erros e refaça o simulado.";han="不忘初心 · não esqueça o início";}
+  let msg,han,hum;
+  if(pct>=70){msg="Desempenho de aprovação! Ritmo de prova afiado, energia de bias. Segue assim. 💜";han="精進不懈 · esforço sem pausa";hum="feliz";}
+  else if(pct>=50){msg="Na faixa de corte. Ajusta a gestão de tempo e reforça os pontos fracos. Dá pra mais!";han="持之以恆 · persistência";hum="neutro";}
+  else{msg="Hora de intensificar o cultivo. Revisa os erros e refaz o simulado — você consegue! 💪";han="不忘初心 · não esqueça o início";hum="anima";}
   const lista=quiz.map((q,i)=>{
     const r=respostas[i];
     const st = r===null?'<span class="rs blank">Branco</span>':(r===q.cor?'<span class="rs ok">Acertou</span>':'<span class="rs no">Errou</span>');
@@ -637,6 +871,7 @@ function finalizarProva(porTempo){
   document.getElementById("quiz").innerHTML=`
     <div class="result">
       ${porTempo?'<div class="rlabel" style="color:var(--crimson);margin-bottom:8px">⏱ Tempo esgotado — prova encerrada automaticamente</div>':''}
+      ${mascote(hum)}
       <div class="rscore" style="color:${cor}">${pct}%</div>
       <div class="rlabel">${acertos} de ${quiz.length} corretas · ${respondidas} respondidas</div>
       <div class="rmsg">${msg}</div><div class="rhan">${han}</div>
@@ -653,8 +888,8 @@ function verGabarito(i){
   }).join("");
   document.getElementById("gabbox").innerHTML=`
     <div class="qcard" style="margin-top:11px">
-      <span class="qtag ${q.hot?'hot':''}">Questão ${i+1} · ${MATMAP[q.mat]} · ${q.dif}</span>
-      <div class="qtext">${q.q}</div>${alts}
+      <span class="qtag ${q.hot?'hot':''}">Questão ${i+1} · ${MATMAP[q.mat]} · ${q.dif}${q.fgv?' · 📋 FGV':''}</span>
+      <div class="qtext">${fmtEnunciado(q.q)}</div>${alts}
       <div class="com"><b>Resposta correta: ${"ABCDE"[q.cor]}.</b><br>${q.com}</div>
     </div>`;
   document.getElementById("gabbox").scrollIntoView({behavior:"smooth",block:"start"});
@@ -664,10 +899,10 @@ function verGabarito(i){
 function registrar(q,acertou,escolha){
   if(!historico[q.mat])historico[q.mat]={total:0,acertos:0};
   historico[q.mat].total++;if(acertou)historico[q.mat].acertos++;
-  LS.set("hist",historico);
   if(!acertou && escolha!==null && !revisar.some(r=>r.q===q.q)){
-    revisar.push({...q,marcada:escolha});LS.set("rev",revisar);
+    revisar.push({...q,marcada:escolha});
   }
+  salvarProgresso();
 }
 
 function voltarConfig(){
@@ -711,7 +946,7 @@ function renderRevisao(){
     </div>`).join("");
   el.innerHTML=`<div class="stats"><div class="stat"><div class="v" style="color:var(--crimson)">${revisar.length}</div><div class="l">Questões para revisar</div></div></div>${itens}`;
 }
-function removerRev(idx){revisar.splice(idx,1);LS.set("rev",revisar);renderRevisao();}
+function removerRev(idx){revisar.splice(idx,1);salvarProgresso();renderRevisao();}
 
 /* ───────── HISTÓRICO ───────── */
 function renderHistorico(){
@@ -735,10 +970,128 @@ function renderHistorico(){
     <div class="card"><div class="clabel">Desempenho por matéria (do mais fraco ao mais forte)</div>${rows}</div>
     <div class="qfoot"><button class="btn" onclick="limparHist()">Limpar histórico</button></div>`;
 }
-function limparHist(){if(confirm("Apagar todo o histórico de desempenho? (não afeta as questões de revisão)")){historico={};LS.set("hist",historico);renderHistorico();}}
+function limparHist(){if(confirm("Apagar todo o histórico de desempenho? (não afeta as questões de revisão)")){historico={};salvarProgresso();renderHistorico();}}
+
+/* ═══════════ AUTENTICAÇÃO ═══════════ */
+let authModo = "login"; // "login" | "signup"
+
+function alternarAuth(){
+  authModo = authModo==="login" ? "signup" : "login";
+  const t=document.getElementById("login-title");
+  const s=document.getElementById("login-sub");
+  const b=document.getElementById("login-btn");
+  const sw=document.getElementById("login-switch");
+  msgLogin("");
+  if(authModo==="signup"){
+    t.textContent="Criar conta";
+    s.textContent="Crie uma conta com e-mail e senha. Seu progresso fica salvo na nuvem e acessível de qualquer aparelho.";
+    b.textContent="Criar conta";
+    sw.innerHTML='Já tem conta? <a onclick="alternarAuth()">Entrar</a>';
+  }else{
+    t.textContent="Entrar";
+    s.textContent="Acesse com e-mail e senha para salvar seu progresso e estudar de qualquer dispositivo.";
+    b.textContent="Entrar";
+    sw.innerHTML='Ainda não tem conta? <a onclick="alternarAuth()">Criar conta</a>';
+  }
+}
+function msgLogin(txt,tipo){
+  const m=document.getElementById("login-msg");
+  m.className="loginmsg"+(tipo?" "+tipo:"");
+  m.textContent=txt||"";
+}
+async function fazerAuth(){
+  const email=document.getElementById("login-email").value.trim();
+  const pass=document.getElementById("login-pass").value;
+  if(!email||!pass){msgLogin("Preencha e-mail e senha.","err");return;}
+  if(pass.length<6){msgLogin("A senha precisa ter ao menos 6 caracteres.","err");return;}
+  if(!sb){msgLogin("Conexão indisponível. Tente novamente em instantes.","err");return;}
+  const btn=document.getElementById("login-btn");
+  btn.disabled=true;btn.textContent="Aguarde…";
+  try{
+    let res;
+    if(authModo==="signup"){
+      res=await sb.auth.signUp({email,password:pass});
+      if(res.error)throw res.error;
+      if(!res.data.session){
+        // confirmação de e-mail ainda ligada
+        msgLogin("Conta criada! Verifique seu e-mail para confirmar e depois faça login.","ok");
+        btn.disabled=false;btn.textContent="Criar conta";
+        return;
+      }
+    }else{
+      res=await sb.auth.signInWithPassword({email,password:pass});
+      if(res.error)throw res.error;
+    }
+    usuario=res.data.user;
+    modoConvidado=false;
+    await carregarProgressoNuvem();
+    mostrarApp();
+  }catch(e){
+    let m=e.message||"Não foi possível entrar.";
+    if(/invalid login/i.test(m))m="E-mail ou senha incorretos.";
+    if(/already registered/i.test(m))m="Este e-mail já tem conta. Tente entrar.";
+    msgLogin(m,"err");
+  }
+  btn.disabled=false;btn.textContent=authModo==="signup"?"Criar conta":"Entrar";
+}
+function entrarConvidado(){
+  modoConvidado=true;usuario=null;
+  historico=LS.get("hist",{});revisar=LS.get("rev",[]);
+  mostrarApp();
+}
+async function sair(){
+  if(sb&&usuario){try{await sb.auth.signOut();}catch(e){}}
+  usuario=null;modoConvidado=false;
+  historico={};revisar=[];
+  mostrarLogin();
+  document.getElementById("login-email").value="";
+  document.getElementById("login-pass").value="";
+  msgLogin("");
+}
+function renderUserbar(){
+  const bar=document.getElementById("userbar");
+  if(usuario){
+    bar.innerHTML=`<span class="syncdot ok" id="syncstate">• salvo na nuvem</span>
+      <span>·</span><b>${usuario.email}</b>
+      <button onclick="sair()">Sair</button>`;
+  }else{
+    bar.innerHTML=`<span>Modo visitante — progresso só neste aparelho</span>
+      <button onclick="sair()">Entrar / criar conta</button>`;
+  }
+}
+function mostrarLogin(){
+  document.getElementById("appcontent").style.display="none";
+  document.getElementById("loginscreen").style.display="block";
+  const m=document.getElementById("login-mascote");
+  if(m)m.innerHTML=mascote("neutro","sm");
+}
+function mostrarApp(){
+  document.getElementById("loginscreen").style.display="none";
+  document.getElementById("appcontent").style.display="block";
+  renderUserbar();
+  const fa=document.getElementById("frase-abertura");
+  if(fa){fa.innerHTML="🐰 "+FRASES_ABERTURA[Math.floor(Math.random()*FRASES_ABERTURA.length)];fa.style.display="block";}
+  setModo("estudo");
+  tab("sim");
+}
 
 /* ───────── INIT ───────── */
-setModo("estudo");
+(async function init(){
+  // tenta retomar sessão já existente (quem já logou antes)
+  if(sb){
+    try{
+      const {data}=await sb.auth.getSession();
+      if(data&&data.session){
+        usuario=data.session.user;
+        await carregarProgressoNuvem();
+        mostrarApp();
+        return;
+      }
+    }catch(e){}
+  }
+  // senão, mostra a tela de login
+  mostrarLogin();
+})();
 </script>
 </body>
 </html>
