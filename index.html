@@ -30,11 +30,16 @@
     color:var(--ink);
     line-height:1.55;
     background-image:
-      radial-gradient(circle at 18% 10%, rgba(184,134,11,.06), transparent 38%),
-      radial-gradient(circle at 85% 18%, rgba(124,92,191,.07), transparent 40%),
-      radial-gradient(circle at 82% 90%, rgba(63,111,90,.06), transparent 42%);
+      linear-gradient(180deg,rgba(244,236,219,.78),rgba(244,236,219,.92)),
+      radial-gradient(circle at 18% 10%, rgba(184,134,11,.10), transparent 38%),
+      radial-gradient(circle at 85% 18%, rgba(124,92,191,.10), transparent 40%),
+      url("assets/bg_forest_rabbits.png");
+    background-size:cover,cover,cover,cover;
+    background-position:center,center,center,center;
+    background-attachment:fixed;
     min-height:100vh;
   }
+  body:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:rgba(244,236,219,.28);backdrop-filter:blur(1.5px)}
   .wrap{max-width:760px;margin:0 auto;padding:18px 16px 60px;position:relative;z-index:1}
   .bg-deco{position:fixed;inset:0;z-index:0;pointer-events:none}
   .bg-deco svg{width:100%;height:100%}
@@ -310,6 +315,35 @@
   .loginswitch a{color:var(--jade);font-weight:600;cursor:pointer;text-decoration:underline}
   .guestlink{text-align:center;margin-top:14px}
   .guestlink a{font-size:12px;color:#9a8a6d;cursor:pointer;text-decoration:underline}
+
+
+  /* ===== PERSONAGENS LIVRES / SEM QUADRADO FIXO ===== */
+  .wrap{background:rgba(244,236,219,.58);border-radius:18px;backdrop-filter:blur(2px)}
+  .qscene{position:relative;isolation:isolate;min-height:188px;margin:4px 0 10px;display:flex;align-items:flex-end;gap:10px}
+  .qscene.left{justify-content:flex-start}.qscene.right{justify-content:flex-end}.qscene.center{justify-content:center}
+  .sticker{
+    width:min(44vw,245px);max-height:310px;object-fit:contain;filter:drop-shadow(0 14px 12px rgba(26,20,16,.22));
+    animation:stickerFloat 4.5s ease-in-out infinite;z-index:2;align-self:flex-end;
+  }
+  .sticker.small{width:min(36vw,190px)}.sticker.wide{width:min(62vw,360px)}.sticker.boss{width:min(70vw,430px)}
+  .speech{
+    max-width:360px;align-self:center;background:rgba(251,246,234,.90);border:1px solid rgba(124,92,191,.38);
+    border-radius:16px 16px 16px 6px;padding:11px 13px;box-shadow:0 10px 24px rgba(26,20,16,.10);z-index:3;
+  }
+  .qscene.right .speech{border-radius:16px 16px 6px 16px;order:-1}.qscene.center .speech{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(92%,420px)}
+  .speech .who{font-size:10px;letter-spacing:.8px;text-transform:uppercase;font-weight:800;color:var(--purple);margin-bottom:3px}
+  .speech .txt{font-size:13px;line-height:1.45;color:#3f3428}.speech .txt b{color:var(--crimson)}
+  .speech .ref{font-size:10.8px;color:#7a6a4d;margin-top:5px}
+  .enter-pop{animation:enterPop .45s cubic-bezier(.2,.85,.25,1.2) both}
+  @keyframes stickerFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-8px) rotate(1.3deg)}}
+  @keyframes enterPop{from{opacity:0;transform:translateY(14px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
+  @media(max-width:560px){
+    .qscene{min-height:148px;align-items:flex-end}.sticker{width:min(45vw,170px);max-height:210px}.sticker.wide{width:min(60vw,240px)}.sticker.boss{width:min(76vw,285px)}
+    .speech{max-width:58vw;padding:9px 10px}.speech .txt{font-size:12px}.speech .ref{display:none}
+  }
+  @media(max-width:380px){.speech{max-width:62vw}.sticker{width:min(43vw,145px)}}
+  @media(prefers-reduced-motion:reduce){.sticker{animation:none!important}.enter-pop{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -606,47 +640,119 @@ const CONSOLOS=[
   "A sombra de hoje é só prova de que existe luz. Continua. 🌙"
 ];
 /* frases-piscadela que aparecem ao abrir (alusão a eras/álbuns, sem versos) */
-const CAMEOS=[
-  {
-    src:"assets/bts_brasil_banner.png",
-    cls:"group",
-    tag:"Brazil arrival · OT7 energy",
-    refs:["Dynamite brightness","Mikrokosmos glow","Permission to Dance joy","Magic Shop comfort","Spring Day patience"],
-    lines:[
-      "The Brazil stage is calling — <b>Aymara</b>, keep going until show day.",
-      "Question by question: a little Mic Drop confidence, a lot of Magic Shop calm.",
-      "Seven cheers from Brazil mode: today’s quiz has Dynamite energy.",
-      "If this round feels like a Spring Day wait, breathe — the concert payoff is coming.",
-      "They look ready to land in Brazil and finally meet <b>Aymara</b> in the crowd."
-    ]
-  },
-  {
-    src:"assets/untamed_brasil_duo.png",
-    cls:"duo",
-    tag:"Concert guardians · cultivation mode",
-    refs:["Black Swan focus","Answer: Love Myself","Run BTS stamina","Yet To Come promise","Euphoria mood"],
-    lines:[
-      "The duo is guarding your focus: one more answer before the big Brazil night.",
-      "Calm like Black Swan, steady like a cultivator — <b>Aymara</b> can do this.",
-      "Run BTS stamina activated: no fear of a 327-question journey.",
-      "Yet To Come mood: the best part is the moment <b>Aymara</b> sees the show lights.",
-      "They crossed realms for Brazil — now you cross this question."
-    ]
-  }
+const PERSONAGENS=[
+  {src:"assets/stickers/g_wave_blond.png", cls:"small", who:"Arrival wave"},
+  {src:"assets/stickers/g_cheer_jump.png", cls:"", who:"Dynamite cheer"},
+  {src:"assets/stickers/g_finger_heart.png", cls:"small", who:"Finger heart"},
+  {src:"assets/stickers/g_lightstick_dance.png", cls:"", who:"Lightstick hype"},
+  {src:"assets/stickers/g_thumbsup.png", cls:"", who:"Thumbs up"},
+  {src:"assets/stickers/g_peace.png", cls:"", who:"Peace sign"},
+  {src:"assets/stickers/d_meditate_dark.png", cls:"small", who:"Black Swan focus"},
+  {src:"assets/stickers/d_meditate_light.png", cls:"small", who:"Moonlight calm"},
+  {src:"assets/stickers/d_point_dark.png", cls:"small", who:"Next question"},
+  {src:"assets/stickers/d_point_light.png", cls:"small", who:"Answer guide"},
+  {src:"assets/stickers/d_celebrate_dark.png", cls:"small", who:"Run stamina"},
+  {src:"assets/stickers/d_celebrate_light.png", cls:"small", who:"Euphoria jump"},
+  {src:"assets/stickers/d_encourage_dark.png", cls:"", who:"Protective coach"},
+  {src:"assets/stickers/d_encourage_light.png", cls:"", who:"Calm coach"},
+  {src:"assets/stickers/d_surprise_duo.png", cls:"wide", who:"Plot twist"},
+  {src:"assets/stickers/d_protective_duo.png", cls:"wide", who:"Cultivation duo"},
+  {src:"assets/stickers/m_solo_pompom.png", cls:"small", who:"Brazil cheer"},
+  {src:"assets/stickers/m_highfive_duo.png", cls:"wide", who:"High-five duo"},
+  {src:"assets/stickers/m_trio_study.png", cls:"wide", who:"Study trio"},
+  {src:"assets/stickers/m_fantasy_rabbits.png", cls:"wide", who:"Rabbit guardians"},
+  {src:"assets/stickers/m_concert_trio.png", cls:"wide", who:"Concert trio"},
+  {src:"assets/stickers/m_tired_study.png", cls:"wide", who:"Tired but going"},
+  {src:"assets/stickers/m_victory_group.png", cls:"boss", who:"Victory party"},
+  {src:"assets/stickers/m_final_boss.png", cls:"boss", who:"Final boss mode"}
 ];
+const FALAS={
+  intro:[
+    "Brazil countdown on. <b>Aymara</b>, one question at a time until the show lights.",
+    "Today’s study mood: Magic Shop comfort + Run BTS stamina.",
+    "They came dressed for Brazil and ready to cheer your approval arc.",
+    "Before the concert, there is the quest: defeat the edital, question by question.",
+    "Mikrokosmos glow: every correct answer is one more light in the crowd.",
+    "No pressure, just progress. Love Yourself energy for this round.",
+    "The forest is calm, the rabbits are watching, and the quiz begins.",
+    "Aymara’s show era is loading — keep the study combo alive."
+  ],
+  question:[
+    "New question. Read like a detective, answer like a main dancer.",
+    "Black Swan focus: ignore the noise and find the core of the statement.",
+    "This one is a small boss fight. You have more stamina than it thinks.",
+    "Mic Drop confidence, but check the alternatives before celebrating.",
+    "Spring Day patience: sometimes the answer appears after the second read.",
+    "Run BTS pace: quick, steady, no panic.",
+    "A little Euphoria when the concept clicks — go for it.",
+    "Yet To Come promise: the best score is still ahead.",
+    "Permission to Dance break after this one? First, mark the right option.",
+    "Map of the Soul mode: understand the pattern, not just the sentence.",
+    "The cultivation duo says: breathe, underline mentally, eliminate traps.",
+    "Aymara’s future concert self is cheering from the front row.",
+    "One more step in the Love Yourself syllabus: no self-sabotage.",
+    "If FGV tries drama, answer with calm choreography.",
+    "Dynamite brightness for a dry topic. Make it sparkle anyway.",
+    "The rabbits approve careful reading. They do not approve rushing."
+  ],
+  correct:[
+    "Correct! That was Dynamite energy — bright, fast, precise.",
+    "Mic Drop moment. <b>Aymara</b>, that answer landed.",
+    "Euphoria unlocked: the concept clicked beautifully.",
+    "Magic Shop comfort: your effort is showing up as accuracy.",
+    "Run BTS stamina paying off. Keep the combo going.",
+    "Mikrokosmos point of light added to your score.",
+    "That was clean choreography: read, eliminate, confirm.",
+    "The Brazil concert crew is celebrating this hit.",
+    "Answer: Love Myself — and also love this correct answer.",
+    "You turned the edital into a stage and owned this question."
+  ],
+  wrong:[
+    "Not this time — Spring Day patience. Review it and keep walking.",
+    "Black Swan moment: a shadow appeared, but now you know the move.",
+    "Magic Shop reset: breathe, save the learning, continue.",
+    "Even Run BTS has hard laps. This one becomes revision fuel.",
+    "No shame in a miss. The next question is already waiting for your comeback.",
+    "FGV placed a trap; now you’ve mapped it. That is progress.",
+    "Yet To Come: the better version of this answer is coming after review.",
+    "Aymara’s show day deserves persistence, not perfection.",
+    "The cultivation duo says: errors are just training arcs.",
+    "Keep going. The crowd does not leave after one wrong note."
+  ],
+  result:[
+    "Result screen. Whatever the score, the study arc continues — and Brazil is still waiting.",
+    "The rabbits witnessed everything. Save the lessons, then run it back.",
+    "This score is data, not destiny. Map it, review it, improve it.",
+    "Concert energy + concurso discipline: unusual combo, powerful combo.",
+    "Aymara’s future self says thank you for not stopping here."
+  ]
+};
+const REFS=["Dynamite","Mic Drop","Magic Shop","Mikrokosmos","Spring Day","Black Swan","Run BTS","Euphoria","Yet To Come","Love Yourself","Map of the Soul","Permission to Dance","Proof","BE","Wings"];
+let ultimoPersonagem=-1;
 function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+function personagem(context){
+  let pool=PERSONAGENS;
+  if(context==="correct") pool=PERSONAGENS.filter((_,i)=>[1,3,4,5,10,11,17,20,22].includes(i));
+  if(context==="wrong") pool=PERSONAGENS.filter((_,i)=>[6,7,12,13,15,19,21,23].includes(i));
+  if(context==="result") pool=PERSONAGENS.filter((_,i)=>[15,17,18,19,20,22,23].includes(i));
+  if(context==="intro") pool=PERSONAGENS.filter((_,i)=>[0,2,8,9,16,18,20].includes(i));
+  let idx=Math.floor(Math.random()*pool.length);
+  let obj=pool[idx];
+  if(PERSONAGENS.indexOf(obj)===ultimoPersonagem && pool.length>1){idx=(idx+1)%pool.length;obj=pool[idx];}
+  ultimoPersonagem=PERSONAGENS.indexOf(obj);
+  return obj;
+}
 function cameo(context){
-  const c = (context==="duo") ? CAMEOS[1] : (context==="group" ? CAMEOS[0] : pick(CAMEOS));
-  const line = pick(c.lines);
-  const ref = pick(c.refs);
-  return `<div class="character-stage cameo-pop">
-    <div class="stage-inner">
-      <div class="stage-shot ${c.cls}"><img src="${c.src}" alt="Personagens em clima de Brasil e show"></div>
-      <div>
-        <div class="stage-kicker">${c.tag}</div>
-        <div class="stage-line">${line}</div>
-        <div class="stage-ref">Album/track mood: ${ref}</div>
-      </div>
+  const p=personagem(context||"question");
+  const aligns=["left","right","center"];
+  const align=aligns[(pos + Math.floor(Math.random()*aligns.length))%aligns.length] || "left";
+  const falas=FALAS[context]||FALAS.question;
+  return `<div class="qscene ${align} enter-pop">
+    <img class="sticker ${p.cls}" src="${p.src}" alt="${p.who}">
+    <div class="speech">
+      <div class="who">${p.who}</div>
+      <div class="txt">${pick(falas)}</div>
+      <div class="ref">BTS mood: ${pick(REFS)}</div>
     </div>
   </div>`;
 }
@@ -833,7 +939,7 @@ function renderEstudo(){
   document.getElementById("quiz").innerHTML=`
     <div class="qbar"><i style="width:${pct}%"></i></div>
     <div class="qmeta"><span>Questão <b>${pos+1}</b> de <b>${quiz.length}</b></span><span>Acertos: <b>${acertos}</b></span></div>
-    ${cameo(pos%5===0?'duo':(pos%3===0?'group':'mix'))}
+    ${cameo('question')}
     <div class="qcard">
       <span class="qtag ${q.hot?'hot':''}">${MATMAP[q.mat]} · ${q.dif}${q.hot?' · 🔥 alta incidência':''}${q.fgv?' · 📋 estilo FGV':''}</span>
       <div class="qtext">${fmtEnunciado(q.q)}</div>
@@ -857,7 +963,7 @@ function confirmarE(){
     const i=+el.dataset.i;el.classList.add("lock");el.onclick=null;
     if(i===q.cor)el.classList.add("ok");else if(i===sel)el.classList.add("no");
   });
-  document.getElementById("com").innerHTML=`<div class="com"><b>${acertou?"Correto. "+ELOGIOS[Math.floor(Math.random()*ELOGIOS.length)]:"Resposta correta: "+("ABCDE"[q.cor])+". "+CONSOLOS[Math.floor(Math.random()*CONSOLOS.length)]}</b><br>${q.com}</div>${cameo(acertou?'group':'duo')}`;
+  document.getElementById("com").innerHTML=`<div class="com"><b>${acertou?"Correto. "+ELOGIOS[Math.floor(Math.random()*ELOGIOS.length)]:"Resposta correta: "+("ABCDE"[q.cor])+". "+CONSOLOS[Math.floor(Math.random()*CONSOLOS.length)]}</b><br>${q.com}</div>${cameo(acertou?'correct':'wrong')}`;
   registrar(q,acertou,sel);
   document.getElementById("b-conf").style.display="none";
   document.getElementById("b-next").style.display="block";
@@ -873,7 +979,7 @@ function resultadoEstudo(){
   document.getElementById("quiz").innerHTML=`
     <div class="result">
       ${mascote(hum)}
-      ${cameo(pct>=70?'group':'duo')}
+      ${cameo('result')}
       <div class="rscore" style="color:${cor}">${pct}%</div>
       <div class="rlabel">${acertos} de ${quiz.length} questões corretas</div>
       <div class="rmsg">${msg}</div><div class="rhan">${han}</div>
@@ -999,7 +1105,7 @@ function finalizarProva(porTempo){
     <div class="result">
       ${porTempo?'<div class="rlabel" style="color:var(--crimson);margin-bottom:8px">⏱ Tempo esgotado — prova encerrada automaticamente</div>':''}
       ${mascote(hum)}
-      ${cameo(pct>=70?'group':'duo')}
+      ${cameo('result')}
       <div class="rscore" style="color:${cor}">${pct}%</div>
       <div class="rlabel">${acertos} de ${quiz.length} corretas · ${respondidas} respondidas</div>
       <div class="rmsg">${msg}</div><div class="rhan">${han}</div>
@@ -1198,7 +1304,7 @@ function mostrarApp(){
   document.getElementById("appcontent").style.display="block";
   renderUserbar();
   const fa=document.getElementById("frase-abertura");
-  if(fa){fa.innerHTML="🐰 "+FRASES_ABERTURA[Math.floor(Math.random()*FRASES_ABERTURA.length)];fa.style.display="block";}
+  if(fa){fa.innerHTML="🐰 "+FRASES_ABERTURA[Math.floor(Math.random()*FRASES_ABERTURA.length)] + cameo('intro');fa.style.display="block";}
   setModo("estudo");
   tab("sim");
 }
