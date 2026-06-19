@@ -30,16 +30,11 @@
     color:var(--ink);
     line-height:1.55;
     background-image:
-      linear-gradient(180deg,rgba(244,236,219,.78),rgba(244,236,219,.92)),
-      radial-gradient(circle at 18% 10%, rgba(184,134,11,.10), transparent 38%),
-      radial-gradient(circle at 85% 18%, rgba(124,92,191,.10), transparent 40%),
-      url("assets/bg_forest_rabbits.png");
-    background-size:cover,cover,cover,cover;
-    background-position:center,center,center,center;
-    background-attachment:fixed;
+      radial-gradient(circle at 18% 10%, rgba(184,134,11,.06), transparent 38%),
+      radial-gradient(circle at 85% 18%, rgba(124,92,191,.07), transparent 40%),
+      radial-gradient(circle at 82% 90%, rgba(63,111,90,.06), transparent 42%);
     min-height:100vh;
   }
-  body:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:rgba(244,236,219,.28);backdrop-filter:blur(1.5px)}
   .wrap{max-width:760px;margin:0 auto;padding:18px 16px 60px;position:relative;z-index:1}
   .bg-deco{position:fixed;inset:0;z-index:0;pointer-events:none}
   .bg-deco svg{width:100%;height:100%}
@@ -77,40 +72,11 @@
   .nb.on{background:linear-gradient(135deg,var(--jade),var(--purple));color:#f7f2e8;border-color:var(--jade)}
 
   /* ===== MASCOTE YÙTÙ + REFORÇO ===== */
-  .mascote{display:block;margin:4px auto 0;width:118px;height:auto;overflow:visible;transform-origin:50% 92%;animation:yutuFloat 3.6s ease-in-out infinite}
+  .mascote{display:block;margin:4px auto 0;width:118px;height:auto;overflow:visible}
   .mascote.sm{width:74px}
-  .mascote:hover{animation:yutuJump .75s ease-in-out 1}
-  .mascote .ear-left{transform-origin:60px 56px;animation:yutuEarL 4.2s ease-in-out infinite}
-  .mascote .ear-right{transform-origin:100px 56px;animation:yutuEarR 4.6s ease-in-out infinite}
-  .mascote .arm-wave{transform-origin:118px 116px;animation:yutuWave 1.8s ease-in-out infinite}
-  .mascote .sparkle{animation:yutuSpark 1.7s ease-in-out infinite alternate}
-  @keyframes yutuFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-7px) rotate(1deg)}}
-  @keyframes yutuJump{0%,100%{transform:translateY(0) scale(1)}45%{transform:translateY(-16px) scale(1.04)}}
-  @keyframes yutuEarL{0%,78%,100%{transform:rotate(0)}84%{transform:rotate(-7deg)}90%{transform:rotate(4deg)}}
-  @keyframes yutuEarR{0%,72%,100%{transform:rotate(0)}80%{transform:rotate(7deg)}88%{transform:rotate(-3deg)}}
-  @keyframes yutuWave{0%,100%{transform:rotate(0)}50%{transform:rotate(-13deg)}}
-  @keyframes yutuSpark{from{opacity:.35;transform:scale(.9)}to{opacity:1;transform:scale(1.15)}}
-  .character-stage{
-    position:relative;overflow:hidden;border:1px solid var(--purple2);
-    background:linear-gradient(135deg,#f7f1ff 0%,#fff7e6 58%,#edf7f0 100%);
-    border-radius:14px;margin:10px 0 13px;padding:10px;box-shadow:0 2px 0 rgba(124,92,191,.10);
-  }
-  .character-stage:before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle at 18% 20%,rgba(124,92,191,.15),transparent 25%),radial-gradient(circle at 82% 15%,rgba(184,134,11,.12),transparent 22%);animation:stageGlow 7s linear infinite;pointer-events:none}
-  @keyframes stageGlow{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
-  .stage-inner{position:relative;display:grid;grid-template-columns:106px 1fr;gap:10px;align-items:center}
-  .stage-shot{height:78px;border-radius:11px;overflow:hidden;border:1px solid rgba(124,92,191,.35);background:#efe4ce}
-  .stage-shot img{width:100%;height:100%;object-fit:cover;display:block;animation:stagePan 8s ease-in-out infinite alternate}
-  .stage-shot.duo img{object-position:center}
-  .stage-shot.group img{object-position:center}
-  @keyframes stagePan{from{transform:scale(1.06) translateX(-2px)}to{transform:scale(1.13) translateX(2px)}}
-  .stage-kicker{font-size:10.5px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--purple);margin-bottom:3px}
-  .stage-line{font-size:13px;line-height:1.45;color:#4a4031}
-  .stage-line b{color:var(--crimson)}
-  .stage-ref{font-size:11px;color:#7a6a4d;margin-top:4px}
-  .cameo-pop{animation:cameoPop .42s ease-out both}
-  @keyframes cameoPop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
-  @media(max-width:480px){.stage-inner{grid-template-columns:92px 1fr}.stage-shot{height:72px}.stage-line{font-size:12.5px}}
-  @media(prefers-reduced-motion:reduce){.mascote,.mascote *, .stage-shot img, .character-stage:before{animation:none!important}}
+  .mascote.xs{width:46px;margin:0}
+  .qmasc{position:absolute;top:10px;right:12px;width:46px;opacity:.92}
+  .qcard{position:relative}
   .cheer{
     text-align:center;font-size:14px;line-height:1.55;color:#5a4d39;
     background:linear-gradient(180deg,#f3eefb,#efe9f7);
@@ -315,43 +281,6 @@
   .loginswitch a{color:var(--jade);font-weight:600;cursor:pointer;text-decoration:underline}
   .guestlink{text-align:center;margin-top:14px}
   .guestlink a{font-size:12px;color:#9a8a6d;cursor:pointer;text-decoration:underline}
-
-
-  /* ===== PERSONAGENS LIVRES / SEM QUADRADO FIXO ===== */
-  .wrap{background:rgba(244,236,219,.58);border-radius:18px;backdrop-filter:blur(2px)}
-  .qscene{position:relative;isolation:isolate;min-height:188px;margin:4px 0 10px;display:flex;align-items:flex-end;gap:10px}
-  .qscene.left{justify-content:flex-start}.qscene.right{justify-content:flex-end}.qscene.center{justify-content:center}
-  .sticker{
-    width:min(44vw,245px);max-height:310px;object-fit:contain;filter:drop-shadow(0 14px 12px rgba(26,20,16,.22));
-    animation:stickerFloat 4.5s ease-in-out infinite;z-index:2;align-self:flex-end;
-  }
-  .sticker.small{width:min(36vw,190px)}.sticker.wide{width:min(62vw,360px)}.sticker.boss{width:min(70vw,430px)}
-  .speech{
-    max-width:360px;align-self:center;background:rgba(251,246,234,.90);border:1px solid rgba(124,92,191,.38);
-    border-radius:16px 16px 16px 6px;padding:11px 13px;box-shadow:0 10px 24px rgba(26,20,16,.10);z-index:3;
-  }
-  .qscene.right .speech{border-radius:16px 16px 6px 16px;order:-1}.qscene.center .speech{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(92%,420px)}
-  .speech .who{font-size:10px;letter-spacing:.8px;text-transform:uppercase;font-weight:800;color:var(--purple);margin-bottom:3px}
-  .speech .txt{font-size:13px;line-height:1.45;color:#3f3428}.speech .txt b{color:var(--crimson)}
-  .speech .ref{font-size:10.8px;color:#7a6a4d;margin-top:5px}
-  .enter-pop{animation:enterPop .45s cubic-bezier(.2,.85,.25,1.2) both}
-  @keyframes stickerFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-8px) rotate(1.3deg)}}
-  @keyframes enterPop{from{opacity:0;transform:translateY(14px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
-  @media(max-width:560px){
-    .qscene{min-height:148px;align-items:flex-end}.sticker{width:min(45vw,170px);max-height:210px}.sticker.wide{width:min(60vw,240px)}.sticker.boss{width:min(76vw,285px)}
-    .speech{max-width:58vw;padding:9px 10px}.speech .txt{font-size:12px}.speech .ref{display:none}
-  }
-  @media(max-width:380px){.speech{max-width:62vw}.sticker{width:min(43vw,145px)}}
-  @media(prefers-reduced-motion:reduce){.sticker{animation:none!important}.enter-pop{animation:none!important}}
-
-
-
-  /* Ajuste: deixa as laterais limpas; personagens ficam só no miolo do app */
-  .bg-deco{display:none!important}
-  .wrap{max-width:760px;margin-left:auto;margin-right:auto;overflow:hidden}
-  .qscene{max-width:100%;overflow:visible}
-  .sticker{background:transparent!important}
-
 </style>
 </head>
 <body>
@@ -648,123 +577,6 @@ const CONSOLOS=[
   "A sombra de hoje é só prova de que existe luz. Continua. 🌙"
 ];
 /* frases-piscadela que aparecem ao abrir (alusão a eras/álbuns, sem versos) */
-const PERSONAGENS=[
-  {src:"assets/stickers/g_wave_blond.png", cls:"small", who:"Arrival wave"},
-  {src:"assets/stickers/g_cheer_jump.png", cls:"", who:"Dynamite cheer"},
-  {src:"assets/stickers/g_finger_heart.png", cls:"small", who:"Finger heart"},
-  {src:"assets/stickers/g_lightstick_dance.png", cls:"", who:"Lightstick hype"},
-  {src:"assets/stickers/g_thumbsup.png", cls:"", who:"Thumbs up"},
-  {src:"assets/stickers/g_peace.png", cls:"", who:"Peace sign"},
-  {src:"assets/stickers/d_meditate_dark.png", cls:"small", who:"Black Swan focus"},
-  {src:"assets/stickers/d_meditate_light.png", cls:"small", who:"Moonlight calm"},
-  {src:"assets/stickers/d_point_dark.png", cls:"small", who:"Next question"},
-  {src:"assets/stickers/d_point_light.png", cls:"small", who:"Answer guide"},
-  {src:"assets/stickers/d_celebrate_dark.png", cls:"small", who:"Run stamina"},
-  {src:"assets/stickers/d_celebrate_light.png", cls:"small", who:"Euphoria jump"},
-  {src:"assets/stickers/d_encourage_dark.png", cls:"", who:"Protective coach"},
-  {src:"assets/stickers/d_encourage_light.png", cls:"", who:"Calm coach"},
-  {src:"assets/stickers/d_surprise_duo.png", cls:"wide", who:"Plot twist"},
-  {src:"assets/stickers/d_protective_duo.png", cls:"wide", who:"Cultivation duo"},
-  {src:"assets/stickers/m_solo_pompom.png", cls:"small", who:"Brazil cheer"},
-  {src:"assets/stickers/m_highfive_duo.png", cls:"wide", who:"High-five duo"},
-  {src:"assets/stickers/m_trio_study.png", cls:"wide", who:"Study trio"},
-  {src:"assets/stickers/m_fantasy_rabbits.png", cls:"wide", who:"Rabbit guardians"},
-  {src:"assets/stickers/m_concert_trio.png", cls:"wide", who:"Concert trio"},
-  {src:"assets/stickers/m_tired_study.png", cls:"wide", who:"Tired but going"},
-  {src:"assets/stickers/m_victory_group.png", cls:"boss", who:"Victory party"},
-  {src:"assets/stickers/m_final_boss.png", cls:"boss", who:"Final boss mode"}
-];
-const FALAS={
-  intro:[
-    "Brazil countdown on. <b>Aymara</b>, one question at a time until the show lights.",
-    "Today’s study mood: Magic Shop comfort + Run BTS stamina.",
-    "They came dressed for Brazil and ready to cheer your approval arc.",
-    "Before the concert, there is the quest: defeat the edital, question by question.",
-    "Mikrokosmos glow: every correct answer is one more light in the crowd.",
-    "No pressure, just progress. Love Yourself energy for this round.",
-    "The forest is calm, the rabbits are watching, and the quiz begins.",
-    "Aymara’s show era is loading — keep the study combo alive."
-  ],
-  question:[
-    "New question. Read like a detective, answer like a main dancer.",
-    "Black Swan focus: ignore the noise and find the core of the statement.",
-    "This one is a small boss fight. You have more stamina than it thinks.",
-    "Mic Drop confidence, but check the alternatives before celebrating.",
-    "Spring Day patience: sometimes the answer appears after the second read.",
-    "Run BTS pace: quick, steady, no panic.",
-    "A little Euphoria when the concept clicks — go for it.",
-    "Yet To Come promise: the best score is still ahead.",
-    "Permission to Dance break after this one? First, mark the right option.",
-    "Map of the Soul mode: understand the pattern, not just the sentence.",
-    "The cultivation duo says: breathe, underline mentally, eliminate traps.",
-    "Aymara’s future concert self is cheering from the front row.",
-    "One more step in the Love Yourself syllabus: no self-sabotage.",
-    "If FGV tries drama, answer with calm choreography.",
-    "Dynamite brightness for a dry topic. Make it sparkle anyway.",
-    "The rabbits approve careful reading. They do not approve rushing."
-  ],
-  correct:[
-    "Correct! That was Dynamite energy — bright, fast, precise.",
-    "Mic Drop moment. <b>Aymara</b>, that answer landed.",
-    "Euphoria unlocked: the concept clicked beautifully.",
-    "Magic Shop comfort: your effort is showing up as accuracy.",
-    "Run BTS stamina paying off. Keep the combo going.",
-    "Mikrokosmos point of light added to your score.",
-    "That was clean choreography: read, eliminate, confirm.",
-    "The Brazil concert crew is celebrating this hit.",
-    "Answer: Love Myself — and also love this correct answer.",
-    "You turned the edital into a stage and owned this question."
-  ],
-  wrong:[
-    "Not this time — Spring Day patience. Review it and keep walking.",
-    "Black Swan moment: a shadow appeared, but now you know the move.",
-    "Magic Shop reset: breathe, save the learning, continue.",
-    "Even Run BTS has hard laps. This one becomes revision fuel.",
-    "No shame in a miss. The next question is already waiting for your comeback.",
-    "FGV placed a trap; now you’ve mapped it. That is progress.",
-    "Yet To Come: the better version of this answer is coming after review.",
-    "Aymara’s show day deserves persistence, not perfection.",
-    "The cultivation duo says: errors are just training arcs.",
-    "Keep going. The crowd does not leave after one wrong note."
-  ],
-  result:[
-    "Result screen. Whatever the score, the study arc continues — and Brazil is still waiting.",
-    "The rabbits witnessed everything. Save the lessons, then run it back.",
-    "This score is data, not destiny. Map it, review it, improve it.",
-    "Concert energy + concurso discipline: unusual combo, powerful combo.",
-    "Aymara’s future self says thank you for not stopping here."
-  ]
-};
-const REFS=["Dynamite","Mic Drop","Magic Shop","Mikrokosmos","Spring Day","Black Swan","Run BTS","Euphoria","Yet To Come","Love Yourself","Map of the Soul","Permission to Dance","Proof","BE","Wings"];
-let ultimoPersonagem=-1;
-function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
-function personagem(context){
-  let pool=PERSONAGENS;
-  if(context==="correct") pool=PERSONAGENS.filter((_,i)=>[1,3,4,5,10,11,17,20,22].includes(i));
-  if(context==="wrong") pool=PERSONAGENS.filter((_,i)=>[6,7,12,13,15,19,21,23].includes(i));
-  if(context==="result") pool=PERSONAGENS.filter((_,i)=>[15,17,18,19,20,22,23].includes(i));
-  if(context==="intro") pool=PERSONAGENS.filter((_,i)=>[0,2,8,9,16,18,20].includes(i));
-  let idx=Math.floor(Math.random()*pool.length);
-  let obj=pool[idx];
-  if(PERSONAGENS.indexOf(obj)===ultimoPersonagem && pool.length>1){idx=(idx+1)%pool.length;obj=pool[idx];}
-  ultimoPersonagem=PERSONAGENS.indexOf(obj);
-  return obj;
-}
-function cameo(context){
-  const p=personagem(context||"question");
-  const aligns=["left","right","center"];
-  const align=aligns[(pos + Math.floor(Math.random()*aligns.length))%aligns.length] || "left";
-  const falas=FALAS[context]||FALAS.question;
-  return `<div class="qscene ${align} enter-pop">
-    <img class="sticker ${p.cls}" src="${p.src}" alt="${p.who}">
-    <div class="speech">
-      <div class="who">${p.who}</div>
-      <div class="txt">${pick(falas)}</div>
-      <div class="ref">BTS mood: ${pick(REFS)}</div>
-    </div>
-  </div>`;
-}
-
 const FRASES_ABERTURA=[
   "玉兔 diz: hoje é dia de cultivar a sua melhor era. 💜",
   "Antes de estudar, respira: você está na fase mais bonita da jornada.",
@@ -780,27 +592,29 @@ const FRASES_ABERTURA=[
 ];
 
 /* mascote Yùtù (coelho de jade) — SVG original, 3 humores: 'neutro','feliz','anima' */
+const IDLE_POSES=["neutro","peace","heart","pompom","aceno"];
 function mascote(humor,cls){
   const c=cls||"";
   const base=`<defs>
     <linearGradient id="mj" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6fae93"/><stop offset="1" stop-color="#3f6f5a"/></linearGradient>
     <radialGradient id="mc" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#c2456b" stop-opacity="0.5"/><stop offset="1" stop-color="#c2456b" stop-opacity="0"/></radialGradient>
+    <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2d34d"/><stop offset="1" stop-color="#3f8f4f"/></linearGradient>
   </defs>
   <ellipse cx="80" cy="166" rx="46" ry="9" fill="#3f6f5a" opacity="0.12"/>`;
   if(humor==="feliz"){
     return `<svg class="mascote ${c}" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">${base}
-      <path class="ear-left" d="M60 56 C52 20 44 8 50 4 C58 2 66 26 70 50 Z" fill="url(#mj)"/><path class="ear-right" d="M100 56 C108 20 116 8 110 4 C102 2 94 26 90 50 Z" fill="url(#mj)"/>
+      <path d="M60 56 C52 20 44 8 50 4 C58 2 66 26 70 50 Z" fill="url(#mj)"/><path d="M100 56 C108 20 116 8 110 4 C102 2 94 26 90 50 Z" fill="url(#mj)"/>
       <ellipse cx="80" cy="120" rx="40" ry="42" fill="url(#mj)"/><circle cx="80" cy="80" r="38" fill="url(#mj)"/>
       <ellipse cx="80" cy="128" rx="24" ry="28" fill="#eaf3ee" opacity="0.9"/>
       <circle cx="58" cy="88" r="9" fill="url(#mc)"/><circle cx="102" cy="88" r="9" fill="url(#mc)"/>
       <path d="M61 78 Q66 72 71 78" stroke="#1a1410" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M89 78 Q94 72 99 78" stroke="#1a1410" stroke-width="3" fill="none" stroke-linecap="round"/>
       <circle cx="80" cy="85" r="2" fill="#c2456b"/><path d="M74 89 Q80 96 86 89" stroke="#1a1410" stroke-width="2" fill="none" stroke-linecap="round"/>
       <path d="M44 110 Q30 96 34 88" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M116 110 Q130 96 126 88" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/>
-      <text class="sparkle" x="34" y="80" font-size="14" text-anchor="middle">✨</text><text class="sparkle" x="126" y="80" font-size="14" text-anchor="middle">✨</text></svg>`;
+      <text x="34" y="80" font-size="14" text-anchor="middle">✨</text><text x="126" y="80" font-size="14" text-anchor="middle">✨</text></svg>`;
   }
   if(humor==="anima"){
     return `<svg class="mascote ${c}" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">${base}
-      <path class="ear-left" d="M60 56 C54 26 48 14 53 9 C60 10 67 30 70 50 Z" fill="url(#mj)"/><path class="ear-right" d="M100 56 C106 28 112 18 108 12 C101 14 94 32 90 50 Z" fill="url(#mj)"/>
+      <path d="M60 56 C54 26 48 14 53 9 C60 10 67 30 70 50 Z" fill="url(#mj)"/><path d="M100 56 C106 28 112 18 108 12 C101 14 94 32 90 50 Z" fill="url(#mj)"/>
       <ellipse cx="80" cy="120" rx="40" ry="42" fill="url(#mj)"/><circle cx="80" cy="80" r="38" fill="url(#mj)"/>
       <ellipse cx="80" cy="128" rx="24" ry="28" fill="#eaf3ee" opacity="0.9"/>
       <circle cx="58" cy="90" r="9" fill="url(#mc)"/><circle cx="102" cy="90" r="9" fill="url(#mc)"/>
@@ -808,11 +622,86 @@ function mascote(humor,cls){
       <circle cx="67.5" cy="78.5" r="1.6" fill="#fff"/><circle cx="95.5" cy="78.5" r="1.6" fill="#fff"/>
       <path d="M59 70 Q66 68 72 71" stroke="#1a1410" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M88 71 Q94 68 101 70" stroke="#1a1410" stroke-width="1.6" fill="none" stroke-linecap="round"/>
       <circle cx="80" cy="88" r="2" fill="#c2456b"/><path d="M76 94 Q80 92 84 94" stroke="#1a1410" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <path class="arm-wave" d="M118 116 Q132 110 128 100" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/><text class="sparkle" x="128" y="96" font-size="13" text-anchor="middle">💪</text></svg>`;
+      <path d="M118 116 Q132 110 128 100" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/><text x="128" y="96" font-size="13" text-anchor="middle">💪</text></svg>`;
+  }
+  if(humor==="pompom"){
+    return `<svg class="mascote ${c}" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">${base}
+      <path d="M60 56 C52 20 44 8 50 4 C58 2 66 26 70 50 Z" fill="url(#mj)"/><path d="M100 56 C108 20 116 8 110 4 C102 2 94 26 90 50 Z" fill="url(#mj)"/>
+      <ellipse cx="80" cy="120" rx="40" ry="42" fill="url(#mj)"/><circle cx="80" cy="80" r="38" fill="url(#mj)"/>
+      <ellipse cx="80" cy="128" rx="24" ry="28" fill="#eaf3ee" opacity="0.9"/>
+      <circle cx="58" cy="88" r="9" fill="url(#mc)"/><circle cx="102" cy="88" r="9" fill="url(#mc)"/>
+      <path d="M61 78 Q66 72 71 78" stroke="#1a1410" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M89 78 Q94 72 99 78" stroke="#1a1410" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <circle cx="80" cy="85" r="2" fill="#c2456b"/><path d="M74 89 Q80 96 86 89" stroke="#1a1410" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M116 110 Q132 92 130 78" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <circle cx="132" cy="64" r="14" fill="url(#mg)"/>
+      <path d="M132 64 L118 56 M132 64 L146 56 M132 64 L120 70 M132 64 L144 72 M132 64 L132 50 M132 64 L132 78" stroke="#3f8f4f" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M132 64 L122 52 M132 64 L142 52 M132 64 L124 76 M132 64 L140 76" stroke="#f2d34d" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M44 112 Q34 104 38 96" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/></svg>`;
+  }
+  if(humor==="heart"){
+    return `<svg class="mascote ${c}" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">${base}
+      <path d="M60 56 C52 20 44 8 50 4 C58 2 66 26 70 50 Z" fill="url(#mj)"/><path d="M100 56 C108 20 116 8 110 4 C102 2 94 26 90 50 Z" fill="url(#mj)"/>
+      <path d="M61 50 C56 26 52 14 54 11 C58 12 62 30 65 48 Z" fill="#a98fd9" opacity="0.85"/><path d="M99 50 C104 26 108 14 106 11 C102 12 98 30 95 48 Z" fill="#a98fd9" opacity="0.85"/>
+      <ellipse cx="80" cy="120" rx="40" ry="42" fill="url(#mj)"/><circle cx="80" cy="80" r="38" fill="url(#mj)"/>
+      <ellipse cx="80" cy="128" rx="24" ry="28" fill="#eaf3ee" opacity="0.9"/>
+      <circle cx="58" cy="88" r="9" fill="url(#mc)"/><circle cx="102" cy="88" r="9" fill="url(#mc)"/>
+      <path d="M61 78 Q66 73 71 78" stroke="#1a1410" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M89 78 Q94 73 99 78" stroke="#1a1410" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      <circle cx="80" cy="85" r="2" fill="#c2456b"/><path d="M76 90 Q80 94 84 90" stroke="#1a1410" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M112 116 Q122 108 116 100" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M110 96 c0 -5 8 -5 8 1 c0 -5 8 -5 8 1 c0 5 -8 10 -8 10 c0 0 -8 -5 -8 -12 Z" fill="#c2456b"/></svg>`;
+  }
+  if(humor==="cansado"){
+    return `<svg class="mascote ${c}" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="80" cy="168" rx="52" ry="8" fill="#3f6f5a" opacity="0.12"/>
+      <rect x="30" y="140" width="100" height="12" rx="2" fill="#7c5cbf"/><rect x="36" y="128" width="88" height="12" rx="2" fill="#b8860b"/><rect x="42" y="116" width="76" height="12" rx="2" fill="#3f8f4f"/>
+      <path d="M52 92 C44 64 38 54 44 50 C52 50 58 70 62 96 Z" fill="url(#mj)"/><path d="M70 90 C70 62 70 52 76 50 C84 52 82 72 80 96 Z" fill="url(#mj)"/>
+      <ellipse cx="78" cy="108" rx="36" ry="22" fill="url(#mj)"/><circle cx="62" cy="100" r="26" fill="url(#mj)"/>
+      <circle cx="52" cy="104" r="6" fill="url(#mc)"/>
+      <path d="M50 98 Q55 102 60 98" stroke="#1a1410" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M66 98 Q71 102 76 98" stroke="#1a1410" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <circle cx="63" cy="106" r="1.6" fill="#c2456b"/>
+      <text x="96" y="80" font-size="13" fill="#7c5cbf">z</text><text x="104" y="70" font-size="16" fill="#7c5cbf">Z</text></svg>`;
+  }
+  if(humor==="peace"){
+    return `<svg class="mascote ${c}" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">${base}
+      <path d="M60 56 C52 20 44 8 50 4 C58 2 66 26 70 50 Z" fill="url(#mj)"/><path d="M100 56 C108 20 116 8 110 4 C102 2 94 26 90 50 Z" fill="url(#mj)"/>
+      <ellipse cx="80" cy="120" rx="40" ry="42" fill="url(#mj)"/><circle cx="80" cy="80" r="38" fill="url(#mj)"/>
+      <ellipse cx="80" cy="128" rx="24" ry="28" fill="#eaf3ee" opacity="0.9"/>
+      <circle cx="58" cy="88" r="9" fill="url(#mc)"/><circle cx="102" cy="88" r="9" fill="url(#mc)"/>
+      <path d="M61 78 Q66 72 71 78" stroke="#1a1410" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M89 78 Q94 72 99 78" stroke="#1a1410" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <circle cx="80" cy="85" r="2" fill="#c2456b"/><path d="M74 89 Q80 96 86 89" stroke="#1a1410" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M44 112 Q34 96 40 84" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M40 84 l-4 -12 M40 84 l4 -12" stroke="url(#mj)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M116 110 Q126 102 122 92" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/></svg>`;
+  }
+  if(humor==="trofeu"){
+    return `<svg class="mascote ${c}" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">${base}
+      <path d="M60 56 C52 20 44 8 50 4 C58 2 66 26 70 50 Z" fill="url(#mj)"/><path d="M100 56 C108 20 116 8 110 4 C102 2 94 26 90 50 Z" fill="url(#mj)"/>
+      <ellipse cx="80" cy="120" rx="40" ry="42" fill="url(#mj)"/><circle cx="80" cy="80" r="38" fill="url(#mj)"/>
+      <ellipse cx="80" cy="128" rx="24" ry="28" fill="#eaf3ee" opacity="0.9"/>
+      <circle cx="58" cy="88" r="9" fill="url(#mc)"/><circle cx="102" cy="88" r="9" fill="url(#mc)"/>
+      <path d="M61 78 Q66 72 71 78" stroke="#1a1410" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M89 78 Q94 72 99 78" stroke="#1a1410" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <circle cx="80" cy="85" r="2" fill="#c2456b"/><path d="M73 89 Q80 97 87 89" stroke="#1a1410" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      <path d="M48 110 Q38 92 44 80" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M112 110 Q122 92 116 80" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M70 56 h20 v8 a10 10 0 0 1 -20 0 Z" fill="#d4a017"/>
+      <path d="M70 58 h-7 a6 6 0 0 0 7 6 M90 58 h7 a6 6 0 0 1 -7 6" stroke="#d4a017" stroke-width="2.4" fill="none"/>
+      <rect x="77" y="72" width="6" height="6" fill="#b8860b"/><rect x="71" y="78" width="18" height="4" rx="1" fill="#b8860b"/>
+      <text x="80" y="50" font-size="11" text-anchor="middle">✨</text></svg>`;
+  }
+  if(humor==="aceno"){
+    return `<svg class="mascote ${c}" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">${base}
+      <path d="M60 56 C52 20 44 8 50 4 C58 2 66 26 70 50 Z" fill="url(#mj)"/><path d="M100 56 C108 20 116 8 110 4 C102 2 94 26 90 50 Z" fill="url(#mj)"/>
+      <path d="M61 50 C56 26 52 14 54 11 C58 12 62 30 65 48 Z" fill="#a98fd9" opacity="0.85"/><path d="M99 50 C104 26 108 14 106 11 C102 12 98 30 95 48 Z" fill="#a98fd9" opacity="0.85"/>
+      <ellipse cx="80" cy="120" rx="40" ry="42" fill="url(#mj)"/><circle cx="80" cy="80" r="38" fill="url(#mj)"/>
+      <ellipse cx="80" cy="128" rx="24" ry="28" fill="#eaf3ee" opacity="0.9"/>
+      <circle cx="58" cy="88" r="9" fill="url(#mc)"/><circle cx="102" cy="88" r="9" fill="url(#mc)"/>
+      <path d="M61 78 Q66 73 71 78" stroke="#1a1410" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M89 78 Q94 73 99 78" stroke="#1a1410" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      <circle cx="80" cy="85" r="2" fill="#c2456b"/><path d="M75 90 Q80 95 85 90" stroke="#1a1410" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M116 112 Q130 100 126 86" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/><circle cx="126" cy="82" r="6" fill="url(#mj)"/>
+      <path d="M44 112 Q34 104 38 96" stroke="url(#mj)" stroke-width="10" fill="none" stroke-linecap="round"/></svg>`;
   }
   // neutro
   return `<svg class="mascote ${c}" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">${base}
-    <path class="ear-left" d="M60 56 C52 20 44 8 50 4 C58 2 66 26 70 50 Z" fill="url(#mj)"/><path class="ear-right" d="M100 56 C108 20 116 8 110 4 C102 2 94 26 90 50 Z" fill="url(#mj)"/>
+    <path d="M60 56 C52 20 44 8 50 4 C58 2 66 26 70 50 Z" fill="url(#mj)"/><path d="M100 56 C108 20 116 8 110 4 C102 2 94 26 90 50 Z" fill="url(#mj)"/>
     <path d="M61 50 C56 26 52 14 54 11 C58 12 62 30 65 48 Z" fill="#a98fd9" opacity="0.85"/><path d="M99 50 C104 26 108 14 106 11 C102 12 98 30 95 48 Z" fill="#a98fd9" opacity="0.85"/>
     <ellipse cx="80" cy="120" rx="40" ry="42" fill="url(#mj)"/><circle cx="80" cy="80" r="38" fill="url(#mj)"/>
     <ellipse cx="80" cy="128" rx="24" ry="28" fill="#eaf3ee" opacity="0.9"/>
@@ -947,8 +836,8 @@ function renderEstudo(){
   document.getElementById("quiz").innerHTML=`
     <div class="qbar"><i style="width:${pct}%"></i></div>
     <div class="qmeta"><span>Questão <b>${pos+1}</b> de <b>${quiz.length}</b></span><span>Acertos: <b>${acertos}</b></span></div>
-    ${cameo('question')}
     <div class="qcard">
+      <div class="qmasc" id="qmasc">${mascote(IDLE_POSES[pos%IDLE_POSES.length],"xs")}</div>
       <span class="qtag ${q.hot?'hot':''}">${MATMAP[q.mat]} · ${q.dif}${q.hot?' · 🔥 alta incidência':''}${q.fgv?' · 📋 estilo FGV':''}</span>
       <div class="qtext">${fmtEnunciado(q.q)}</div>
       <div id="alts">${alts}</div>
@@ -971,7 +860,9 @@ function confirmarE(){
     const i=+el.dataset.i;el.classList.add("lock");el.onclick=null;
     if(i===q.cor)el.classList.add("ok");else if(i===sel)el.classList.add("no");
   });
-  document.getElementById("com").innerHTML=`<div class="com"><b>${acertou?"Correto. "+ELOGIOS[Math.floor(Math.random()*ELOGIOS.length)]:"Resposta correta: "+("ABCDE"[q.cor])+". "+CONSOLOS[Math.floor(Math.random()*CONSOLOS.length)]}</b><br>${q.com}</div>${cameo(acertou?'correct':'wrong')}`;
+  const qm=document.getElementById("qmasc");
+  if(qm)qm.innerHTML=mascote(acertou?"feliz":"anima","xs");
+  document.getElementById("com").innerHTML=`<div class="com"><b>${acertou?"Correto. "+ELOGIOS[Math.floor(Math.random()*ELOGIOS.length)]:"Resposta correta: "+("ABCDE"[q.cor])+". "+CONSOLOS[Math.floor(Math.random()*CONSOLOS.length)]}</b><br>${q.com}</div>`;
   registrar(q,acertou,sel);
   document.getElementById("b-conf").style.display="none";
   document.getElementById("b-next").style.display="block";
@@ -981,13 +872,12 @@ function resultadoEstudo(){
   const pct=Math.round((acertos/quiz.length)*100);
   const cor=pct>=70?"var(--jade)":pct>=50?"var(--gold2)":"var(--crimson)";
   let msg,han,hum;
-  if(pct>=70){msg="Domínio de cultivador! Constância de quem vai à posse. Segue brilhando.";han="精進不懈 · esforço sem pausa";hum="feliz";}
-  else if(pct>=50){msg="Caminho promissor. Reforça os pontos fracos na revisão e volta com tudo.";han="持之以恆 · persistência";hum="neutro";}
+  if(pct>=70){msg="Domínio de cultivador! Constância de quem vai à posse. Segue brilhando.";han="精進不懈 · esforço sem pausa";hum="trofeu";}
+  else if(pct>=50){msg="Caminho promissor. Reforça os pontos fracos na revisão e volta com tudo.";han="持之以恆 · persistência";hum="peace";}
   else{msg="O cultivo apenas começou. Revisa com calma — cada erro é uma lição. Bora! 💜";han="不忘初心 · não esqueça o início";hum="anima";}
   document.getElementById("quiz").innerHTML=`
     <div class="result">
       ${mascote(hum)}
-      ${cameo('result')}
       <div class="rscore" style="color:${cor}">${pct}%</div>
       <div class="rlabel">${acertos} de ${quiz.length} questões corretas</div>
       <div class="rmsg">${msg}</div><div class="rhan">${han}</div>
@@ -1035,6 +925,7 @@ function renderProva(){
     </div>
     <div class="qmeta"><span>Questão <b>${pos+1}</b> de <b>${quiz.length}</b></span><span>${MATMAP[q.mat]}${q.fgv?' · 📋 FGV':''}</span></div>
     <div class="qcard">
+      <div class="qmasc" id="qmasc">${mascote(IDLE_POSES[pos%IDLE_POSES.length],"xs")}</div>
       <div class="qtext">${fmtEnunciado(q.q)}</div>
       <div id="alts">${alts}</div>
       <div class="simbtns">
@@ -1101,8 +992,8 @@ function finalizarProva(porTempo){
   const cor=pct>=70?"var(--jade)":pct>=50?"var(--gold2)":"var(--crimson)";
   const respondidas=respostas.filter(r=>r!==null).length;
   let msg,han,hum;
-  if(pct>=70){msg="Desempenho de aprovação! Ritmo de prova afiado, energia de bias. Segue assim. 💜";han="精進不懈 · esforço sem pausa";hum="feliz";}
-  else if(pct>=50){msg="Na faixa de corte. Ajusta a gestão de tempo e reforça os pontos fracos. Dá pra mais!";han="持之以恆 · persistência";hum="neutro";}
+  if(pct>=70){msg="Desempenho de aprovação! Ritmo de prova afiado, energia de bias. Segue assim. 💜";han="精進不懈 · esforço sem pausa";hum="trofeu";}
+  else if(pct>=50){msg="Na faixa de corte. Ajusta a gestão de tempo e reforça os pontos fracos. Dá pra mais!";han="持之以恆 · persistência";hum="peace";}
   else{msg="Hora de intensificar o cultivo. Revisa os erros e refaz o simulado — você consegue! 💪";han="不忘初心 · não esqueça o início";hum="anima";}
   const lista=quiz.map((q,i)=>{
     const r=respostas[i];
@@ -1113,7 +1004,6 @@ function finalizarProva(porTempo){
     <div class="result">
       ${porTempo?'<div class="rlabel" style="color:var(--crimson);margin-bottom:8px">⏱ Tempo esgotado — prova encerrada automaticamente</div>':''}
       ${mascote(hum)}
-      ${cameo('result')}
       <div class="rscore" style="color:${cor}">${pct}%</div>
       <div class="rlabel">${acertos} de ${quiz.length} corretas · ${respondidas} respondidas</div>
       <div class="rmsg">${msg}</div><div class="rhan">${han}</div>
@@ -1312,7 +1202,7 @@ function mostrarApp(){
   document.getElementById("appcontent").style.display="block";
   renderUserbar();
   const fa=document.getElementById("frase-abertura");
-  if(fa){fa.innerHTML="🐰 "+FRASES_ABERTURA[Math.floor(Math.random()*FRASES_ABERTURA.length)] + cameo('intro');fa.style.display="block";}
+  if(fa){fa.innerHTML="🐰 "+FRASES_ABERTURA[Math.floor(Math.random()*FRASES_ABERTURA.length)];fa.style.display="block";}
   setModo("estudo");
   tab("sim");
 }
