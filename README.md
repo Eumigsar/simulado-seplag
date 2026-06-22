@@ -1,134 +1,136 @@
-# Simulado SEPLAG-RJ · FGV 2026
+# 修道 · Simulado SEPLAG-RJ · 陈情令
 
-Página web de questões de concurso (banco fixo), pronta para o **GitHub Pages**.
-Funciona no navegador, no computador ou no celular, **sem login e sem chave de API**.
+> Simulador de questões com IA para o concurso **SEPLAG-RJ FGV 2026** (cargos EPPGG e APO), com tema visual de **The Untamed / 陈情令**.
 
+---
 
-## Status do banco — COMPLETO
+## ✨ Funcionalidades
 
-**314 questões** nas 14 matérias do edital:
-
-| Matéria | Questões |
+| Feature | Descrição |
 |---|---|
-| Língua Portuguesa | 20 |
-| Raciocínio Lógico-Quantitativo | 20 |
-| Direito Administrativo | 19 |
-| Direito Constitucional | 20 |
-| Administração e Governança Pública | 20 |
-| Finanças Públicas / AFO | 20 |
-| Políticas Públicas | 20 |
-| Economia | 20 |
-| Ciência Política | 20 |
-| Realidade Brasileira e do RJ | 20 |
-| Gestão de Pessoas | 20 |
-| Tecnologia da Informação | 19 |
-| Ética e Legislação | 20 |
-| Estatuto dos Servidores / Regime Jurídico | 19 |
-
-Mix de dificuldade: **69 fáceis · 138 médias · 70 difíceis**. 163 marcadas como "alta incidência" (🔥).
-
-Todos os gabaritos foram revisados (conferência de correção factual, lógica das questões "exceto/incorreto" e recálculo independente das questões numéricas). 82 comentários trazem nota explícita sobre **como o tema costuma ser cobrado pela FGV**.
+| 🤖 **IA Claude Sonnet 4.6** | Gera questões inéditas com gabarito e comentário FGV-contextualizado |
+| 👤 **Perfil de cultivador** | Nome salvo, progresso por usuário no localStorage |
+| ⏱ **Cronômetro** | Tempo de sessão + tempo acumulado por matéria |
+| 📊 **Desempenho** | Aproveitamento, questões feitas e horas de estudo por matéria |
+| ☯ **Revisão de erros** | Questões erradas ficam salvas para revisão posterior |
+| 🎵 **Áudio** | Som de guqin no acerto, tom grave no erro, música pentatônica ambiente |
+| 🌸 **Visual** | Pétalas caindo, 3 fundos temáticos (Lotus Pier · Cloud Recesses · Burial Mounds) |
+| 🗣 **Personagens** | Wei Wuxian e Lan Zhan aparecem com falas de incentivo/consolo |
 
 ---
 
-## Login e progresso na nuvem (Supabase)
+## 🖼 Cenários temáticos
 
-Esta versão tem **login por e-mail e senha** via Supabase. O progresso (histórico
-e revisão) é salvo na nuvem e sincroniza entre celular, notebook e qualquer
-dispositivo. Há também a opção **"Continuar sem conta"**, que salva só no aparelho.
+| Aba | Local | Atmosfera |
+|---|---|---|
+| ⚔ Simulado | **Lotus Pier 莲花坞** | Céu noturno roxo-azul, lótus dourados, lanternas vermelhas, pavilhão sobre o lago |
+| ☯ Revisão | **Cloud Recesses 雲深不知處** | Montanhas nevadas com névoa, portão com caligrafia, wistéria roxa |
+| 卷 Desempenho | **Burial Mounds 乱葬岗** | Céu escarlate-negro, árvores retorcidas, talismãs flutuantes (符咒魂止煞) |
 
-As chaves do Supabase já estão configuradas dentro do `index.html` (a chave usada
-é a **anon public**, que é segura para ficar no código — a proteção real vem das
-políticas de segurança RLS criadas no banco). Configuração detalhada em
-`SUPABASE-passo-a-passo.md`.
+---
 
+## 📚 Matérias disponíveis
 
+- Língua Portuguesa
+- Raciocínio Lógico
+- Direito Administrativo
+- Direito Constitucional
+- Administração e Governança Pública
+- Políticas Públicas
+- Administração Financeira e Orçamentária
+- Finanças Públicas
+- Estatuto dos Servidores RJ
+- Reforma Administrativa
+- Tecnologia da Informação
+- Ética no Serviço Público
 
-### Questões estilo FGV (novo)
-Há **37 questões no formato real da banca FGV**: enunciados longos com contexto, formato "analise as afirmativas I, II, III", "à exceção de uma, assinale-a" e casos concretos pedindo aplicação. Elas aparecem marcadas com 📋 e podem ser filtradas no início (filtro **Estilo das questões → Só estilo FGV**). As 277 questões diretas continuam disponíveis para fixação rápida.
+---
 
+## 🚀 Como usar
 
+### Opção 1 — Instalar o .exe (Windows)
 
-### Alternativas embaralhadas (anti-vício)
-A ordem das alternativas é **sorteada a cada vez** que a questão aparece — assim a resposta certa nunca fica viciada numa mesma letra (ex.: sempre "B"). Os comentários descrevem a resposta pelo conteúdo, não pela letra.
+1. Baixe o instalador na seção [Releases](../../releases)
+2. Execute e instale normalmente
+3. Abra o app e insira sua **chave API Anthropic** no campo no topo (obtenha em [console.anthropic.com](https://console.anthropic.com))
+4. Clique **✦ salvar** — a chave fica armazenada localmente
+5. Crie seu perfil de cultivador e comece!
 
+### Opção 2 — Rodar em modo desenvolvimento
 
-
-### Identidade visual: "Cultivo & Hype" 💜
-Tema original que mescla a estética da China clássica (tinta sumi-ê, jade, dourado, nós chineses, caracteres decorativos) com a energia carinhosa e roxa do fandom K-pop. Traz um **mascote original** — Yùtù, o coelho de jade — que dá mensagens de reforço positivo com humor, em três humores (feliz, neutro, encorajando). As frases motivacionais são originais. Nenhuma imagem, personagem, rosto ou letra de música protegidos por direitos autorais é utilizada — tudo é ilustração vetorial própria (SVG).
-
-## O que tem
-
-Dois modos de praticar:
-- **📖 Modo Estudo** — sem tempo. Você confirma cada resposta e vê o gabarito comentado na hora. Para aprender e fixar.
-- **⏱ Simulado de Prova** — cronometrado, no formato FGV. Sem gabarito durante a prova; você responde tudo, pode marcar questões para revisar (☆), navega livremente entre elas por uma grade, e só vê o resultado e o gabarito comentado ao entregar. O relógio encerra a prova sozinho quando o tempo acaba.
-
-Formatos de simulado prontos (espelham a prova real da FGV):
-- **Conhecimentos Gerais** — 40 questões / 4h30
-- **Conhecimentos Específicos** — 60 questões / 4h00
-- **Treino rápido** — 20 questões / 1h
-- **Personalizado** — você escolhe quantidade e tempo
-
-Mais:
-- **Modo Revisão** — as questões que você erra ficam guardadas com o gabarito comentado
-- **Desempenho** — gráfico por matéria e aproveitamento geral
-- Filtros de matéria, dificuldade e foco no que mais cai (🔥) valem para os dois modos
-- Progresso salvo no próprio navegador (localStorage)
-
-## Arquivos
-```
-simulado-seplag/
-├── index.html     ← a página (abre direto no navegador)
-├── questoes.js    ← o banco de questões (edite aqui para adicionar/trocar)
-└── README.md      ← este arquivo
+```bash
+git clone https://github.com/Eumigsar/seplag-untamed-quiz.git
+cd seplag-untamed-quiz
+npm install
+npm start
 ```
 
----
+> **Requisito:** Node.js 18+ e uma chave API Anthropic válida.
 
-## Como publicar no GitHub Pages (grátis)
+### Gerar o instalador .exe
 
-1. Crie uma conta em **github.com** (se ainda não tiver).
-2. Clique em **New repository**. Dê um nome, por exemplo `simulado-seplag`. Deixe **Public**. Clique em **Create repository**.
-3. Na página do repositório, clique em **Add file → Upload files**.
-4. Arraste os arquivos `index.html` e `questoes.js` (e o README, se quiser). Clique em **Commit changes**.
-5. Vá em **Settings** (do repositório) → no menu lateral, **Pages**.
-6. Em **Branch**, escolha `main` e a pasta `/ (root)`. Clique em **Save**.
-7. Aguarde cerca de 1 minuto. A página ficará disponível em:
-   ```
-   https://SEU-USUARIO.github.io/simulado-seplag/
-   ```
-   É esse o link que você compartilha com a Aymara.
-
-> Dica: qualquer alteração que você suba no `questoes.js` aparece no site em 1–2 minutos.
-
----
-
-## Como adicionar mais questões
-
-Abra o `questoes.js`. Copie um bloco de questão e cole no final, antes do `]`:
-
-```js
-{
-  mat: "dadmin",          // id da matéria (ver lista abaixo)
-  dif: "Médio",           // "Fácil" | "Médio" | "Difícil"
-  hot: true,              // true = tema que mais cai; false = comum
-  q:  "Enunciado da questão...",
-  alt: ["alternativa A","B","C","D","E"],
-  cor: 2,                 // índice da correta: 0=A, 1=B, 2=C, 3=D, 4=E
-  com: "Comentário/gabarito explicando a resposta."
-},
+```bash
+npm run build-win
 ```
 
-### IDs das matérias
-`port` Língua Portuguesa · `racioc` Raciocínio Lógico · `dadmin` Direito Administrativo ·
-`dconst` Direito Constitucional · `admgov` Administração e Gov. Pública ·
-`finpub` Finanças Públicas/AFO · `polpub` Políticas Públicas · `econ` Economia ·
-`ciepol` Ciência Política · `realrj` Realidade Brasileira e do RJ ·
-`tic` Tecnologia da Informação · `gestpess` Gestão de Pessoas ·
-`etica` Ética e Legislação · `legserv` Estatuto dos Servidores RJ
-
-Só aparecem no menu as matérias que já têm pelo menos uma questão cadastrada.
+> O instalador é gerado em `dist/` — procure por `Simulado SEPLAG-RJ Setup 1.0.0.exe`
 
 ---
 
-*陈情令 · The Untamed · 修道 — estude com disciplina de cultivador.*
+## 🔑 Chave API
+
+- A chave começa com `sk-ant-api...`
+- Ela é salva localmente no seu computador
+- Custo estimado: ~R$ 0,05 a R$ 0,10 por simulado de 10 questões
+- Sem chave, o app não gera questões
+
+---
+
+## 🏗 Estrutura do projeto
+
+```
+seplag-untamed-quiz/
+├── main.js              # Processo principal Electron (CORS, gerador de fundos)
+├── package.json
+├── src/
+│   ├── index.html       # App completo (HTML + CSS + JS inline)
+│   └── gen-bg.html      # Gerador SVG dos 3 fundos temáticos
+└── assets/
+    ├── bg-sim.jpg       # Lotus Pier (gerado automaticamente na 1ª execução)
+    ├── bg-rev.jpg       # Cloud Recesses (gerado automaticamente)
+    └── bg-hist.jpg      # Burial Mounds (gerado automaticamente)
+```
+
+> Os fundos em `assets/` são gerados automaticamente via SVG → Canvas na primeira execução.
+
+---
+
+## ⚙ Tecnologias
+
+- **Electron 26** — app desktop Windows/Mac/Linux
+- **Anthropic Claude Sonnet 4.6** — geração de questões via API
+- **Web Audio API** — sons e música pentatônica sem arquivos externos
+- **HTML5 Canvas** — animação de pétalas e geração dos fundos SVG
+- **localStorage** — persistência de progresso por usuário
+
+---
+
+## 🐛 Problemas comuns
+
+**"electron não reconhecido"** → Feche e reabra o terminal após instalar o Node.js
+
+**"npm install falha"** → Tente `npm install --legacy-peer-deps`
+
+**"Erro ao gerar questões"** → Verifique a chave API e os créditos na conta Anthropic
+
+**Fundo preto/sem imagem** → Os fundos são gerados na primeira execução; aguarde alguns segundos
+
+---
+
+## 📄 Licença
+
+Projeto educacional, sem fins comerciais. Não afiliado à SEPLAG-RJ, FGV ou à produção de *The Untamed / 陈情令*.
+
+---
+
+*陈情令 · The Untamed · 修道 · 莲花坞 · 雲深不知處 · 乱葬岗*
